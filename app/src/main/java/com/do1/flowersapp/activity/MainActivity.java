@@ -127,42 +127,28 @@ public class MainActivity extends BaseActivity {
         PurchaseBillFragment liveFragment = (PurchaseBillFragment) fragmentManager.findFragmentByTag(TAB_ORDER);
         PersonalFragment personalFragment = (PersonalFragment) fragmentManager.findFragmentByTag(TAB_PERSONAL);
         if(null != homeFragment) {
-            tabs.put(positon_home,homeFragment);
-            if(tabPosition == positon_home) {
-                currentFragment = homeFragment;
-                fragmentTransaction.show(homeFragment);
-            } else {
-                fragmentTransaction.hide(homeFragment);
-            }
+            restoreFragment(positon_home,homeFragment,fragmentTransaction);
         }
-        if(null != columnFragment) {
-            tabs.put(position_categroy,columnFragment);
-            if(tabPosition == position_categroy) {
-                currentFragment = columnFragment;
-                fragmentTransaction.show(columnFragment);
-            } else {
-                fragmentTransaction.hide(columnFragment);
-            }
+        if (null != columnFragment) {
+            restoreFragment(position_categroy,columnFragment,fragmentTransaction);
         }
-        if(null != liveFragment) {
-            tabs.put(position_live,liveFragment);
-            if(tabPosition == position_live) {
-                currentFragment = liveFragment;
-                fragmentTransaction.show(liveFragment);
-            } else {
-                fragmentTransaction.hide(liveFragment);
-            }
+        if (null != liveFragment) {
+            restoreFragment(position_live,liveFragment,fragmentTransaction);
         }
-        if(null != personalFragment) {
-            tabs.put(position_personal, personalFragment);
-            if(tabPosition == position_personal) {
-                currentFragment = personalFragment;
-                fragmentTransaction.show(personalFragment);
-            } else {
-                fragmentTransaction.hide(personalFragment);
-            }
+        if (null != personalFragment) {
+            restoreFragment(position_personal,personalFragment,fragmentTransaction);
         }
         fragmentTransaction.commitAllowingStateLoss();
+    }
+
+    private void restoreFragment(int position,ModuleFragment fragment,FragmentTransaction fragmentTransaction) {
+        tabs.put(position, fragment);
+        if(tabPosition == position_personal) {
+            currentFragment = fragment;
+            fragmentTransaction.show(fragment);
+        } else {
+            fragmentTransaction.hide(fragment);
+        }
     }
 
     private void instantiateFragment(int position) {
