@@ -23,6 +23,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -48,6 +49,10 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 	public interface IconTabProvider {
 		public int getPageIconResId(int position);
 	}
+
+    public interface IconAndTabProvider {
+        public int getPageIconResId(int position);
+    }
 	// @formatter:on
 	private LinearLayout.LayoutParams defaultTabLayoutParams;
 	private LinearLayout.LayoutParams expandedTabLayoutParams;
@@ -183,7 +188,9 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 		for (int i = 0; i < tabCount; i++) {
 			if (pager.getAdapter() instanceof IconTabProvider) {
 				addIconTab(i, ((IconTabProvider) pager.getAdapter()).getPageIconResId(i));
-			} else {
+			} else if(pager.getAdapter() instanceof IconAndTabProvider){
+                addIconAndTab(i, ((IconAndTabProvider) pager.getAdapter()).getPageIconResId(i), pager.getAdapter().getPageTitle(i).toString());
+            }else {
 				addTextTab(i, pager.getAdapter().getPageTitle(i).toString());
 			}
 		}
@@ -207,7 +214,18 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 		});
 	}
 
-	private void addTextTab(final int position, String title) {
+    private void addIconAndTab(int position, int resId, String title) {
+        TextView tab = new TextView(getContext());
+        tab.setText(title);
+        tab.setGravity(Gravity.CENTER);
+        tab.setSingleLine();
+        Drawable drawable = getResources().getDrawable(resId);
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(),drawable.getMinimumHeight());
+        tab.setCompoundDrawables(null, drawable, null, null);
+        addTab(position, tab);
+    }
+
+    private void addTextTab(final int position, String title) {
 
 		TextView tab = new TextView(getContext());
 		tab.setText(title);
@@ -358,7 +376,10 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 				view.setTextColor(tabTextColor);
 				if(i == position) {
 					view.setTextColor(tabHighLightTextColor);
-				}
+                    view.setEnabled(true);
+				}else {
+                    view.setEnabled(false);
+                }
 			}
 			if (delegatePageListener != null) {
 				delegatePageListener.onPageSelected(position);

@@ -14,13 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.do1.flowersapp.R;
 import com.do1.flowersapp.activity.FloristsInformationActivity;
+import com.do1.flowersapp.activity.GoodsInfoActicity;
+import com.do1.flowersapp.activity.SellerDetailActivity;
 import com.do1.flowersapp.activity.ShopActivity;
 import com.do1.flowersapp.business.http.CommonResp;
 import com.do1.flowersapp.business.http.ServerApiClient;
@@ -32,13 +33,12 @@ import com.do1.flowersapp.tools.UITools;
 import com.do1.flowersapp.widget.CirclePageIndicator;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.JsonElement;
-import com.loopj.android.http.TextHttpResponseHandler;
-
-import org.w3c.dom.ProcessingInstruction;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
 /**
@@ -53,11 +53,15 @@ public class HomeFragment extends ModuleFragment {
     private ViewPager viewPager;
 
     private List<HomeShop> shopList;
+    @Bind(R.id.btn_message)
+    ImageView mTopMessage;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home,null);
+        View view = inflater.inflate(R.layout.fragment_home, null);
+        ButterKnife.bind(this,view);
+        return view;
     }
 
     @Override
@@ -81,7 +85,12 @@ public class HomeFragment extends ModuleFragment {
 
             @Override
             public void onFail(String serverRespCode, String severRespFail, JsonElement responseString) {
-
+            }
+        });
+        mTopMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UITools.intent(getActivity(), SellerDetailActivity.class);
             }
         });
     }
@@ -165,7 +174,7 @@ public class HomeFragment extends ModuleFragment {
                         if (shop.shopType == 0) {
                             UITools.intent(getActivity(), ShopActivity.class);
                         } else if(shop.shopType == 1) {
-
+                            UITools.intent(getActivity(), GoodsInfoActicity.class);
                         } else if(shop.shopType == 2) {
                             UITools.intent(getActivity(), FloristsInformationActivity.class);
                         }
