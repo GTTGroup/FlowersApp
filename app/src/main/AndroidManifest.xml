@@ -45,7 +45,11 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
             android:theme="@style/Activitytheme" />
-
+        <!--店铺-->
+        <activity android:name=".activity.ShopActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:theme="@style/Activitytheme" />
     </application>
 
 </manifest>

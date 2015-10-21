@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.do1.flowersapp.R;
 import com.do1.flowersapp.activity.FloristsInformationActivity;
+import com.do1.flowersapp.activity.ShopActivity;
 import com.do1.flowersapp.business.model.HomeShop;
 import com.do1.flowersapp.common.RecyclerArrayAdapter;
 import com.do1.flowersapp.context.ModuleFragment;
@@ -69,16 +70,19 @@ public class HomeFragment extends ModuleFragment {
         HomeShop homeShop = new HomeShop();
         homeShop.shopLogoResId = R.drawable.img_shop_logo_celebrity;
         homeShop.shopSlogan = getString(R.string.text_home_master_shop_slogan);
+        homeShop.shopType = 0;
         shopList.add(homeShop);
 
         HomeShop homeShop1 = new HomeShop();
         homeShop1.shopLogoResId = R.drawable.img_shop_logo_gifts;
         homeShop1.shopSlogan = getString(R.string.text_home_gifts_shop_slogan);
+        homeShop1.shopType = 1;
         shopList.add(homeShop1);
 
         HomeShop homeShop2 = new HomeShop();
         homeShop2.shopLogoResId = R.drawable.img_shop_logo_master;
         homeShop2.shopSlogan = getString(R.string.text_home_celebrity_shop_slogan);
+        homeShop2.shopType = 2;
         shopList.add(homeShop2);
 
         List<String> logoList = new ArrayList<>();
@@ -129,13 +133,19 @@ public class HomeFragment extends ModuleFragment {
                 HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
             } else {
                 ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-                HomeShop shop = getItem(position-1);
+                final HomeShop shop = getItem(position-1);
                 itemViewHolder.imgShopLogo.setImageResource(shop.shopLogoResId);
                 itemViewHolder.textShopSlogan.setText(shop.shopSlogan);
                 itemViewHolder.draweeFirstShopLogo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        UITools.intent(getActivity(), FloristsInformationActivity.class);
+                        if (shop.shopType == 0) {
+                            UITools.intent(getActivity(), ShopActivity.class);
+                        } else if(shop.shopType == 1) {
+
+                        } else if(shop.shopType == 2) {
+                            UITools.intent(getActivity(), FloristsInformationActivity.class);
+                        }
                     }
                 });
             }
