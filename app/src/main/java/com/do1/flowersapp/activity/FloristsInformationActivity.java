@@ -10,7 +10,7 @@ import com.do1.flowersapp.widget.PagerSlidingTabStrip;
 /**
  * Created by gufeng
  * Created on 2015/10/19 23:43
- * 功能作用:花艺师详情
+ * 功能作用:花艺师详情界面
  */
 public class FloristsInformationActivity extends BaseActivity {
 
