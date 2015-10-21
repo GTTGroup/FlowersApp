@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.do1.flowersapp.R;
 import com.do1.flowersapp.activity.FloristsInformationActivity;
+import com.do1.flowersapp.activity.GoodsInfoActicity;
 import com.do1.flowersapp.activity.ShopActivity;
 import com.do1.flowersapp.business.model.HomeShop;
 import com.do1.flowersapp.common.RecyclerArrayAdapter;
@@ -142,7 +143,7 @@ public class HomeFragment extends ModuleFragment {
                         if (shop.shopType == 0) {
                             UITools.intent(getActivity(), ShopActivity.class);
                         } else if(shop.shopType == 1) {
-
+                            UITools.intent(getActivity(), GoodsInfoActicity.class);
                         } else if(shop.shopType == 2) {
                             UITools.intent(getActivity(), FloristsInformationActivity.class);
                         }
