@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +14,24 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.do1.flowersapp.R;
+import com.do1.flowersapp.business.http.CommonResp;
+import com.do1.flowersapp.business.http.ServerApiClient;
+import com.do1.flowersapp.business.http.ServerApiClientCallback;
 import com.do1.flowersapp.business.model.CategoryItem;
+import com.do1.flowersapp.business.model.CategoryList;
 import com.do1.flowersapp.common.RecyclerArrayAdapter;
 import com.do1.flowersapp.common.RecyclerItemClickListener;
 import com.do1.flowersapp.context.ModuleFragment;
 import com.do1.flowersapp.tools.DeviceInfo;
 import com.do1.flowersapp.widget.FlowLayout;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.loopj.android.http.TextHttpResponseHandler;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by gufeng
@@ -32,8 +42,6 @@ public class CategroyFragment extends ModuleFragment {
 
     private RecyclerView recyclerCategory;
     private RecyclerView recyclerContent;
-
-    private List<String> categoryList;
 
     private ListRecyclerAdapter adapter;
 
@@ -54,77 +62,30 @@ public class CategroyFragment extends ModuleFragment {
             public void onItemClick(View view, int position) {
                 selectedCategoryPosition = position;
                 adapter.setSelectedPosition(selectedCategoryPosition);
-
-                List<CategoryItem> list = new ArrayList<CategoryItem>();
-                CategoryItem detailItem = new CategoryItem();
-                detailItem.categoryItems.add("红色");
-                detailItem.categoryItems.add("白色");
-                detailItem.categoryItems.add("黄色");
-                detailItem.categoryItems.add("绿色");
-                detailItem.categoryItems.add("天空蓝色");
-                detailItem.categoryItems.add("蓝色");
-                detailItem.categoryItems.add("紫色");
-                detailItem.categoryItems.add("大红色");
-                detailItem.detailTitle = "分类";
-                list.add(detailItem);
-
-                CategoryItem detailItem1 = new CategoryItem();
-                detailItem1.detailTitle = "种类";
-                detailItem1.categoryItems.add("大衣");
-                detailItem1.categoryItems.add("大衣");
-                detailItem1.categoryItems.add("大衣");
-                detailItem1.categoryItems.add("大衣");
-                detailItem1.categoryItems.add("大衣");
-                detailItem1.categoryItems.add("大衣");
-                detailItem1.categoryItems.add("大衣");
-                detailItem1.categoryItems.add("大衣");
-                detailItem1.categoryItems.add("大衣");
-                detailItem1.categoryItems.add("大衣");
-                detailItem1.categoryItems.add("大衣");
-                detailItem1.categoryItems.add("大衣");
-                detailItem1.categoryItems.add("大衣");
-                list.add(detailItem1);
-
-                CategoryItem detailItem2 = new CategoryItem();
-                detailItem2.detailTitle = "品牌";
-                detailItem2.categoryItems.add("NICK");
-                detailItem2.categoryItems.add("NICK");
-                detailItem2.categoryItems.add("NICK");
-                detailItem2.categoryItems.add("NICK");
-                detailItem2.categoryItems.add("NICK");
-                detailItem2.categoryItems.add("NICK");
-                detailItem2.categoryItems.add("NICK");
-                detailItem2.categoryItems.add("NICK");
-                detailItem2.categoryItems.add("NICK");
-                detailItem2.categoryItems.add("NICK");
-                detailItem2.categoryItems.add("NICK");
-                detailItem2.categoryItems.add("NICK");
-                detailItem2.categoryItems.add("NICK");
-                list.add(detailItem2);
-
-                CategoryItem detailItem3 = new CategoryItem();
-                detailItem3.detailTitle = "品牌";
-                detailItem3.categoryItems.add("NICK");
-                detailItem3.categoryItems.add("NICK");
-                detailItem3.categoryItems.add("NICK");
-                detailItem3.categoryItems.add("NICK");
-                detailItem3.categoryItems.add("NICK");
-                detailItem3.categoryItems.add("NICK");
-                detailItem3.categoryItems.add("NICK");
-                detailItem3.categoryItems.add("NICK");
-                detailItem3.categoryItems.add("NICK");
-                detailItem3.categoryItems.add("NICK");
-                detailItem3.categoryItems.add("NICK");
-                detailItem3.categoryItems.add("NICK");
-                detailItem3.categoryItems.add("NICK");
-                list.add(detailItem3);
-
-                createCatrgoryAdapter(list);
+                getSubCategory(adapter.getItem(selectedCategoryPosition).getId());
             }
         }));
-        createListAdapter();
         recyclerContent = (RecyclerView) view.findViewById(R.id.recycler_content);
         recyclerContent.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        ServerApiClient.getInstance().getTypeList(getActivity(), getClass().getName(), new ServerApiClientCallback() {
+            @Override
+            public void onSuccess(CommonResp resp) {
+                CategoryList categoryList = new Gson().fromJson(resp.getData(), CategoryList.class);
+                if (null != categoryList && categoryList.getList().size() > 0) {
+                    createListAdapter(categoryList.getList());
+                }
+            }
+
+            @Override
+            public void onError(int statCode, Header[] headers, String responseString) {
+
+            }
+
+            @Override
+            public void onFail(String serverRespCode, String severRespFail, JsonElement responseString) {
+
+            }
+        });
     }
 
     @Nullable
@@ -133,39 +94,45 @@ public class CategroyFragment extends ModuleFragment {
         return inflater.inflate(R.layout.fragment_category,null);
     }
 
-    private void createListAdapter() {
-        categoryList = new ArrayList<>();
-        categoryList.add("玫瑰");
-        categoryList.add("百合");
-        categoryList.add("康乃馨");
-        categoryList.add("康乃馨1");
-        categoryList.add("康乃馨2");
-        categoryList.add("康乃馨3");
-        categoryList.add("康乃馨4");
-        categoryList.add("康乃馨5");
-        categoryList.add("康乃馨6");
-        categoryList.add("康乃馨7");
-        categoryList.add("康乃馨8");
-        categoryList.add("康乃馨9");
-        categoryList.add("康乃馨10");
-        categoryList.add("康乃馨11");
-        categoryList.add("康乃馨12");
-        categoryList.add("康乃馨13");
-        categoryList.add("康乃馨14");
-
+    private void createListAdapter(List<CategoryList.Category> categoryList) {
         adapter = new ListRecyclerAdapter(getActivity());
         recyclerCategory.setAdapter(adapter);
         adapter.addAll(categoryList);
+        selectedCategoryPosition = 0;
+        adapter.setSelectedPosition(selectedCategoryPosition);
+        getSubCategory(categoryList.get(selectedCategoryPosition).getId());
     }
 
-    private void createCatrgoryAdapter(List<CategoryItem> items) {
+    private void createCatrgoryAdapter(List<CategoryItem.Category> items) {
 
         ItemRecyclerAdapter adapter = new ItemRecyclerAdapter(getActivity());
         adapter.addAll(items);
         recyclerContent.setAdapter(adapter);
     }
 
-    class ItemRecyclerAdapter extends RecyclerArrayAdapter<CategoryItem,CategoryViewHolder> {
+    private void getSubCategory(String parentId) {
+        ServerApiClient.getInstance().getSubTypeList(getActivity(), getClass().getName(), parentId, new ServerApiClientCallback() {
+            @Override
+            public void onSuccess(CommonResp resp) {
+                CategoryItem categoryList = new Gson().fromJson(resp.getData(), CategoryItem.class);
+                if (null != categoryList && categoryList.getList().size() > 0) {
+//                    createCatrgoryAdapter(categoryList.getList());
+                }
+            }
+
+            @Override
+            public void onFail(String serverRespCode, String severRespFail, JsonElement responseString) {
+
+            }
+
+            @Override
+            public void onError(int statCode, Header[] headers, String responseString) {
+
+            }
+        });
+    }
+
+    class ItemRecyclerAdapter extends RecyclerArrayAdapter<CategoryItem.Category,CategoryViewHolder> {
 
         private Context context;
         private int deviceWidth;
@@ -186,25 +153,25 @@ public class CategroyFragment extends ModuleFragment {
 
         @Override
         public void onBindViewHolder(CategoryViewHolder holder, int position) {
-            CategoryItem item = getItem(position);
-            holder.textTitle.setText(item.detailTitle);
-            int nButtonWidth = (deviceWidth-listRecyclerViewWidth-(holder.flowCategory.getSelfHorSpacing()*3) - holder.flowCategory.getPaddingLeft() - holder.flowCategory.getPaddingRight()) / 4;
-            for (final String tag : item.categoryItems) {
-                final RadioButton rbTag = (RadioButton) LayoutInflater.from(getActivity()).inflate(R.layout.view_category_item, null);
-                rbTag.setLayoutParams(new FlowLayout.LayoutParams(nButtonWidth, radioButtonHeight));
-                rbTag.setText(tag);
-                rbTag.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                });
-                holder.flowCategory.addView(rbTag);
-            }
+            CategoryItem.Category item = getItem(position);
+//            holder.textTitle.setText(item.detailTitle);
+//            int nButtonWidth = (deviceWidth-listRecyclerViewWidth-(holder.flowCategory.getSelfHorSpacing()*3) - holder.flowCategory.getPaddingLeft() - holder.flowCategory.getPaddingRight()) / 4;
+//            for (final String tag : item.categoryItems) {
+//                final RadioButton rbTag = (RadioButton) LayoutInflater.from(getActivity()).inflate(R.layout.view_category_item, null);
+//                rbTag.setLayoutParams(new FlowLayout.LayoutParams(nButtonWidth, radioButtonHeight));
+//                rbTag.setText(tag);
+//                rbTag.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                    }
+//                });
+//                holder.flowCategory.addView(rbTag);
+//            }
         }
     }
 
-    class ListRecyclerAdapter extends RecyclerArrayAdapter<String,ListViewHolder> {
+    class ListRecyclerAdapter extends RecyclerArrayAdapter<CategoryList.Category,ListViewHolder> {
 
         private Context context;
         private int selectedPosition = -1;
@@ -221,8 +188,8 @@ public class CategroyFragment extends ModuleFragment {
 
         @Override
         public void onBindViewHolder(ListViewHolder holder, int position) {
-            String category = getItem(position);
-            holder.textCategory.setText(category);
+            CategoryList.Category category = getItem(position);
+            holder.textCategory.setText(category.getTypeName());
             if (position == selectedPosition) {
                 holder.textCategory.setSelected(true);
             } else {

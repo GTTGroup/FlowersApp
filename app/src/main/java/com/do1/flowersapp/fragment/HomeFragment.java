@@ -22,17 +22,24 @@ import android.widget.TextView;
 import com.do1.flowersapp.R;
 import com.do1.flowersapp.activity.FloristsInformationActivity;
 import com.do1.flowersapp.activity.ShopActivity;
+import com.do1.flowersapp.business.http.CommonResp;
+import com.do1.flowersapp.business.http.ServerApiClient;
+import com.do1.flowersapp.business.http.ServerApiClientCallback;
 import com.do1.flowersapp.business.model.HomeShop;
 import com.do1.flowersapp.common.RecyclerArrayAdapter;
 import com.do1.flowersapp.context.ModuleFragment;
 import com.do1.flowersapp.tools.UITools;
 import com.do1.flowersapp.widget.CirclePageIndicator;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.gson.JsonElement;
+import com.loopj.android.http.TextHttpResponseHandler;
 
 import org.w3c.dom.ProcessingInstruction;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by gufeng
@@ -61,6 +68,22 @@ public class HomeFragment extends ModuleFragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_content);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         createAdapter();
+        ServerApiClient.getInstance().getHomeAdList(getActivity(), getClass().getName(), new ServerApiClientCallback() {
+            @Override
+            public void onSuccess(CommonResp resp) {
+
+            }
+
+            @Override
+            public void onError(int statCode, Header[] headers, String responseString) {
+
+            }
+
+            @Override
+            public void onFail(String serverRespCode, String severRespFail, JsonElement responseString) {
+
+            }
+        });
     }
 
     private void createAdapter() {
