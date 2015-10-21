@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/img_item_divider"/>
+
+        <ImageView
+            android:id="@+id/img_shop_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/img_shop_logo_master" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/text_shop_slogan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/text_home_master_shop_slogan"
+                android:textSize="12sp"
+                android:textColor="@color/color_808080" />
+
+            <TextView
+                android:id="@+id/btn_shop_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:text="更多>>"
+                android:textSize="12sp"
+                android:textColor="@color/FB9802" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_for_home_item_pic">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/drawee_first_flower_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/ll_home_shop_title"
+                    android:layout_margin="5dp"
+                    fresco:pressedStateOverlayImage="@drawable/bg_selector_drawee"
+                    fresco:placeholderImageScaleType="fitXY"
+                    fresco:placeholderImage="@drawable/img_default_item"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_home_shop_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_first_flower_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="@string/app_name"
+                        android:textColor="@color/color_333333"
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:id="@+id/text_first_flower_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:visibility="gone"
+                        android:text="30"
+                        android:textColor="@color/color_333333"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_for_home_item_pic">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/drawee_second_flower_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/ll_home_second_shop_title"
+                    android:layout_margin="5dp"
+                    fresco:pressedStateOverlayImage="@drawable/bg_selector_drawee"
+                    fresco:placeholderImageScaleType="fitXY"
+                    fresco:placeholderImage="@drawable/img_default_item"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_home_second_shop_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_second_flower_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="@string/app_name"
+                        android:textColor="@color/color_333333"
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:id="@+id/text_second_flower_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:visibility="gone"
+                        android:text="30"
+                        android:textColor="@color/color_333333"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_for_home_item_pic">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/drawee_third_flower_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/ll_home_third_shop_title"
+                    android:layout_margin="5dp"
+                    fresco:pressedStateOverlayImage="@drawable/bg_selector_drawee"
+                    fresco:placeholderImageScaleType="fitXY"
+                    fresco:placeholderImage="@drawable/img_default_item"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_home_third_shop_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_third_flower_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="@string/app_name"
+                        android:textColor="@color/color_333333"
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:id="@+id/text_third_flower_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:visibility="gone"
+                        android:text="30"
+                        android:textColor="@color/color_333333"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:orientation="vertical"
+            android:background="@drawable/bg_for_home_item_pic">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/drawee_four_flower_logo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/ll_home_four_shop_title"
+                android:layout_margin="5dp"
+                fresco:pressedStateOverlayImage="@drawable/bg_selector_drawee"
+                fresco:placeholderImageScaleType="fitXY"
+                fresco:placeholderImage="@drawable/img_default_item"/>
+
+            <LinearLayout
+                android:id="@+id/ll_home_four_shop_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_four_flower_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="@string/app_name"
+                    android:textColor="@color/color_333333"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/text_four_flower_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:visibility="gone"
+                    android:text="30"
+                    android:textColor="@color/color_333333"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:orientation="vertical"
+            android:background="@drawable/bg_for_home_item_pic">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/drawee_five_flower_logo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/ll_home_five_shop_title"
+                android:layout_margin="5dp"
+                fresco:pressedStateOverlayImage="@drawable/bg_selector_drawee"
+                fresco:placeholderImageScaleType="fitXY"
+                fresco:placeholderImage="@drawable/img_default_item"/>
+
+            <LinearLayout
+                android:id="@+id/ll_home_five_shop_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_five_flower_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="@string/app_name"
+                    android:textColor="@color/color_333333"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/text_five_flower_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:visibility="gone"
+                    android:text="30"
+                    android:textColor="@color/color_333333"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

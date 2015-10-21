@@ -16,4 +16,18 @@
         <item name="android:activityCloseExitAnimation">@anim/translate_activity_close_out</item>
     </style>
 
+    <style name="Category_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">28dp</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_color_category_item</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:background">@drawable/bg_selector_category_item</item>
+    </style>
+
 </resources>

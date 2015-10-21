@@ -17,7 +17,7 @@ import com.do1.flowersapp.context.BaseActivity;
 import com.do1.flowersapp.context.ModuleFragment;
 import com.do1.flowersapp.fragment.CategroyFragment;
 import com.do1.flowersapp.fragment.HomeFragment;
-import com.do1.flowersapp.fragment.OrderFragment;
+import com.do1.flowersapp.fragment.PurchaseBillFragment;
 import com.do1.flowersapp.fragment.PersonalFragment;
 
 /**
@@ -124,7 +124,7 @@ public class MainActivity extends BaseActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         HomeFragment homeFragment = (HomeFragment) fragmentManager.findFragmentByTag(TAB_HOME);
         CategroyFragment columnFragment = (CategroyFragment) fragmentManager.findFragmentByTag(TAB_CATEGORY);
-        OrderFragment liveFragment = (OrderFragment) fragmentManager.findFragmentByTag(TAB_ORDER);
+        PurchaseBillFragment liveFragment = (PurchaseBillFragment) fragmentManager.findFragmentByTag(TAB_ORDER);
         PersonalFragment personalFragment = (PersonalFragment) fragmentManager.findFragmentByTag(TAB_PERSONAL);
         if(null != homeFragment) {
             tabs.put(positon_home,homeFragment);
@@ -187,7 +187,7 @@ public class MainActivity extends BaseActivity {
                 case position_live:
                     tag = TAB_ORDER;
                     if(null == fragment) {
-                        fragment = new OrderFragment();
+                        fragment = new PurchaseBillFragment();
                     }
                     break;
                 case position_personal:
@@ -246,7 +246,7 @@ public class MainActivity extends BaseActivity {
                 instantiateFragment(position_live);
             } else if(v == tabPersonal) {
                 instantiateFragment(position_personal);
-            } 
+            }
         }
     };
 }

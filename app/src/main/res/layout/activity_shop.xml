@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_height"
+        android:background="@drawable/bg_top"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/btn_top_back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:src="@drawable/btn_top_back"/>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="7dp"
+            android:layout_marginTop="7dp">
+
+            <EditText
+                android:id="@+id/input_commodity_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:singleLine="true"
+                android:textColor="@color/color_999999"
+                android:textSize="14sp"
+                android:text=""
+                android:imeOptions="actionSearch"
+                android:paddingLeft="15dp"
+                android:paddingRight="40dp"/>
+
+            <ImageView
+                android:id="@+id/btn_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_search" />
+
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/btn_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="11dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/btn_message"/>
+
+    </LinearLayout>
+
+</LinearLayout>

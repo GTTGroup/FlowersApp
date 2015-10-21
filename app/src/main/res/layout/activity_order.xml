@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pst="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/EEEEEE">
+
+    <include layout="@layout/common_top_title" />
+
+    <EditText
+        android:id="@+id/input_search_order"
+        android:layout_width="match_parent"
+        android:layout_marginTop="7dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="32dp"
+        android:background="@drawable/bg_input_search_order" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/C9C9C9" />
+
+    <com.do1.flowersapp.widget.PagerSlidingTabStrip
+        android:id="@+id/tab_title"
+        android:layout_width="match_parent"
+        android:layout_height="44dip"
+        android:background="@color/white"
+        android:textSize="16sp"
+        android:textColor="@color/color_797979"
+        pst:pstsIndicatorColor="@color/FC8600"/>
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/pager_container" />
+
+</LinearLayout>

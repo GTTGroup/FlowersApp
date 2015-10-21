@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:gravity="center_vertical">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/drawee_logo"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_commodity_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="商品"
+            android:textSize="15sp"
+            android:textColor="@color/color_333333"/>
+
+        <TextView
+            android:id="@+id/text_commodity_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="100"
+            android:textSize="15sp"
+            android:textColor="@color/FF3333"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_height"
+        android:background="@drawable/bg_top">
+
+        <ImageView
+            android:id="@+id/btn_top_back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:src="@drawable/btn_top_back"/>
+
+        <TextView
+            android:id="@+id/text_top_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:text="@string/title_user_address_manage"
+            android:textSize="17sp"
+            android:singleLine="true"/>
+
+        <TextView
+            android:id="@+id/btn_add_user_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="11dp"
+            android:text="新增"
+            android:textSize="16sp"
+            android:textColor="@color/FC9902"
+            android:singleLine="true"/>
+
+    </RelativeLayout>
+    <com.baoyz.swipemenulistview.SwipeMenuListView
+        android:id="@+id/list_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:divider="@color/F2F2F2"
+        android:dividerHeight="1dp"
+        android:scrollbars="none" />
+</LinearLayout>

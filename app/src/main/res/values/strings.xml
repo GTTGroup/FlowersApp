@@ -7,6 +7,32 @@
     <string name="tab_order">进货单</string>
     <string name="tab_personal">我</string>
 
+    <string name="title_personal">我的</string>
+    <string name="title_order_list">进货单</string>
+    <string name="title_collect">我的收藏</string>
+    <string name="title_florists">花艺师详情</string>
+    <string name="title_user_address_manage">管理收货地址</string>
+
+    <string name="hint_input_commodity_name">请输入商品名称</string>
+
+    <string name="text_user_collect_commodity">我的收藏商品</string>
+    <string name="text_user_collect_shop">我的收藏店铺</string>
+    <string name="text_user_order">订单</string>
+    <string name="text_personal_order">进货单</string>
+    <string name="text_personal_sell_order">销售订单</string>
+    <string name="text_personal_buy">一键下单</string>
+    <string name="text_personal_order_return">异常退货管理</string>
+    <string name="text_personal_pay_money">应付账款</string>
+    <string name="text_personal_message">消息中心</string>
+    <string name="text_home_master_shop_slogan">新鲜,活力就是我们的宗旨</string>
+    <string name="text_home_celebrity_shop_slogan">我们把最受欢迎的花花大师推荐给你</string>
+    <string name="text_home_gifts_shop_slogan">带着泥土芬香,他们在路上</string>
+
+    <string name="btn_order_packing">装箱单</string>
+    <string name="btn_order_return">退货申请</string>
+    <string name="btn_order_pay">去付款</string>
+    <string name="btn_logout">退出账号</string>
+
     <string name="exit_main">再次点击，退出应用</string>
 
 </resources>

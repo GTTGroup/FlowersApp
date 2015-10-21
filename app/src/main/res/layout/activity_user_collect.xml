@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pst="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/common_top_title" />
+    <com.do1.flowersapp.widget.PagerSlidingTabStrip
+        android:id="@+id/tab_title"
+        android:layout_width="match_parent"
+        android:layout_height="44dip"
+        android:background="@color/F4F4F5"
+        android:textSize="16sp"
+        android:textColor="@color/color_797979"
+        pst:pstsIndicatorColor="@color/FC8600"/>
+    <include layout="@layout/common_view_viewpager" />
+</LinearLayout>

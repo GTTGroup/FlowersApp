@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="pagertab_highlight">3dip</dimen>
+    <dimen name="top_height_systembartint">65dp</dimen>
+    <dimen name="top_height">50dp</dimen>
+    <dimen name="top_margin">15dp</dimen>
+    <dimen name="item_swipe_width">50dp</dimen>
+    <dimen name="category_item_height">28dp</dimen>
+    <dimen name="category_recyclerview_list_width">80dp</dimen>
+</resources>

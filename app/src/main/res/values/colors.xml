@@ -3,8 +3,51 @@
 
     <color name="white">#FFFFFF</color>
 
+    <color name="FF0100">#ff0100</color>
+    <color name="B3B2B2">#B3B2B2</color>
+    <color name="FDA63E">#FDA63E</color>
     <color name="FC8600">#FC8600</color>
     <color name="B4B4B4">#B4B4B4</color>
     <color name="B2B2B2">#B2B2B2</color>
+    <color name="F2F2F2">#F2F2F2</color>
+    <color name="E3E3E3">#E3E3E3</color>
+    <color name="F4F4F5">#F4F4F5</color>
+    <color name="FA9C31">#FA9C31</color>
+    <color name="DBDBDB">#DBDBDB</color>
+    <color name="CCCCCC">#CCCCCC</color>
+    <color name="C9C9C9">#C9C9C9</color>
+    <color name="F7F7F7">#F7F7F7</color>
+    <color name="FAFAFA">#FAFAFA</color>
+    <color name="FF5001">#ff5001</color>
+    <color name="FDBE77">#FDBE77</color>
+    <color name="EEEEEE">#eeeeee</color>
+    <color name="FF0000">#ff0000</color>
+    <color name="FF3333">#FF3333</color>
+    <color name="FB9802">#FB9802</color>
+    <color name="DDDDDD">#dddddd</color>
+    <color name="FC9902">#fc9902</color>
+    <color name="C4C4C4">#c4c4c4</color>
+    <color name="FC9026">#fc9026</color>
+    <color name="CDCDCD">#CDCDCD</color>
+    <color name="FF9100">#ff9100</color>
+    <color name="FF5100">#ff5100</color>
+    <color name="FCA724">#fca724</color>
+    <color name="color_808080">#808080</color>
+    <color name="color_b0b0b0">#b0b0b0</color>
+    <color name="color_e6e6e6">#e6e6e6</color>
+    <color name="color_7a7a7a">#7a7a7a</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_797979">#797979</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_3f000000">#3f000000</color>
+    <bool name="default_circle_indicator_centered">true</bool>
+    <color name="default_circle_indicator_fill_color">#FFFFFFFF</color>
+    <color name="default_circle_indicator_page_color">#00000000</color>
+    <integer name="default_circle_indicator_orientation">0</integer>
+    <dimen name="default_circle_indicator_radius">3dp</dimen>
+    <bool name="default_circle_indicator_snap">false</bool>
+    <color name="default_circle_indicator_stroke_color">#FFDDDDDD</color>
+    <dimen name="default_circle_indicator_stroke_width">1dp</dimen>
 
 </resources>
