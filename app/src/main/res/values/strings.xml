@@ -8,12 +8,25 @@
     <string name="tab_personal">我</string>
 
     <string name="title_personal">我的</string>
+    <string name="title_register">注册</string>
+    <string name="title_login">登录</string>
     <string name="title_order_list">进货单</string>
     <string name="title_collect">我的收藏</string>
     <string name="title_florists">花艺师详情</string>
     <string name="title_user_address_manage">管理收货地址</string>
+    <string name="title_add_user_address">新增收货地址</string>
 
     <string name="hint_input_commodity_name">请输入商品名称</string>
+    <string name="hint_input_receve_name">请输入收货人姓名</string>
+    <string name="hint_input_receve_mobile">请输入收货人电话号码</string>
+    <string name="hint_input_receve_provinces">请输入省市区地址</string>
+    <string name="hint_input_receve_street">请输入详细地址</string>
+    <string name="hint_input_user_account">请输入账号</string>
+    <string name="hint_input_user_password">请输入密码</string>
+    <string name="hint_input_user_confirm_password">请再次输入密码</string>
+    <string name="hint_input_user_nick">请输入昵称</string>
+    <string name="hint_input_user_mobile">请输入手机号码</string>
+    <string name="hint_input_user_address">请输入您的联系地址</string>
 
     <string name="text_user_collect_commodity">我的收藏商品</string>
     <string name="text_user_collect_shop">我的收藏店铺</string>
@@ -32,6 +45,12 @@
     <string name="btn_order_return">退货申请</string>
     <string name="btn_order_pay">去付款</string>
     <string name="btn_logout">退出账号</string>
+    <string name="btn_comfirm">确认</string>
+    <string name="btn_register">注册</string>
+    <string name="rb_user">终端用户</string>
+    <string name="rb_shop">花店</string>
+    <string name="rb_wholesaler">批发商</string>
+    <string name="rb_manufacturer">生产商</string>
 
     <string name="exit_main">再次点击，退出应用</string>
 

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/F2F2F2">
+
+    <include layout="@layout/common_top_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_top"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/color_666666"
+                android:text="姓            名"/>
+
+            <EditText
+                android:id="@+id/input_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="15dp"
+                android:textColorHint="@color/DADADA"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp"
+                android:singleLine="true"
+                android:gravity="center_vertical"
+                android:hint="@string/hint_input_receve_name"
+                android:background="@null"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_top"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/color_666666"
+                android:text="电 话 号  码"/>
+
+            <EditText
+                android:id="@+id/input_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:textColorHint="@color/DADADA"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp"
+                android:hint="@string/hint_input_receve_mobile"
+                android:background="@drawable/bg_top"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_top"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/color_666666"
+                android:text="省市区地址"/>
+
+            <EditText
+                android:id="@+id/input_provinces"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="15dp"
+                android:textColorHint="@color/DADADA"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp"
+                android:hint="@string/hint_input_receve_provinces"
+                android:background="@drawable/bg_top"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_top"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/color_666666"
+                android:text="详 细 地  址"/>
+
+            <EditText
+                android:id="@+id/input_street"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="15dp"
+                android:textColorHint="@color/DADADA"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp"
+                android:hint="@string/hint_input_receve_street"
+                android:background="@null"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_comfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/btn_add_user_address"
+        android:textSize="17sp"
+        android:textColor="@color/white"
+        android:text="@string/btn_comfirm"
+        android:gravity="center" />
+
+</LinearLayout>
