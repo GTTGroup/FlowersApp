@@ -157,33 +157,27 @@ public class MainActivity extends BaseActivity {
             setSelectedTab(tabPosition);
             ModuleFragment fragment = tabs.get(position);
             String tag = TAB_HOME;
-            switch (position) {
-                case positon_home:
-                    tag = TAB_HOME;
-                    if(null == fragment) {
+            if (null == fragment) {
+                switch (position) {
+                    case positon_home:
+                        tag = TAB_HOME;
                         fragment = new HomeFragment();
-                    }
-                    break;
-                case position_categroy:
-                    tag = TAB_CATEGORY;
-                    if(null == fragment) {
+                        break;
+                    case position_categroy:
+                        tag = TAB_CATEGORY;
                         fragment = new CategroyFragment();
-                    }
-                    break;
-                case position_live:
-                    tag = TAB_ORDER;
-                    if(null == fragment) {
+                        break;
+                    case position_live:
+                        tag = TAB_ORDER;
                         fragment = new PurchaseBillFragment();
-                    }
-                    break;
-                case position_personal:
-                    tag = TAB_PERSONAL;
-                    if(null == fragment) {
+                        break;
+                    case position_personal:
+                        tag = TAB_PERSONAL;
                         fragment = new PersonalFragment();
-                    }
-                    break;
+                        break;
+                }
+                tabs.put(position, fragment);
             }
-            tabs.put(position,fragment);
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             if(null != currentFragment) {
                 fragmentTransaction.hide(currentFragment);
