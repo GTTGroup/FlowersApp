@@ -1,15 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical">
 
     <include layout="@layout/layout_seller_detail_header" />
 
-    <android.support.v7.widget.RecyclerView
+    <!--<include layout="@layout/layout_seller_detail_tab"/>-->
+
+
+    <com.do1.flowersapp.widget.PagerSlidingTabStrip
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="3dp"
+        app:pstsShouldExpand="true"
+        app:pstsUnderlineColor="@color/FDA63E"
+        app:pstsUnderlineHeight="0dp"
+        app:pstsDividerColor="@android:color/transparent"
+        app:pstsHighLightTextColor="@color/FDA63E"
+        app:pstsTextColor="@color/B3B2B2"
+        app:pstsIndicatorColor="@color/FDA63E"
+        app:pstsIndicatorHeight="3dp"
+        android:id="@+id/pager_slide"
+        />
+
+    <android.support.v4.view.ViewPager
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:id="@+id/view_pager"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        />
 
     <View
         android:layout_width="match_parent"

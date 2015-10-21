@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:background="@color/F4F4F5"
+              android:gravity="center_vertical"
+              android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="商家首页"
+        android:drawableTop="@drawable/icon_home"
+        android:textColor="@color/text_color_tab"
+        android:gravity="center"
+        android:drawablePadding="4dp"
+        android:id="@+id/tab_main"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="全部商品"
+        android:drawableTop="@drawable/icon_all"
+        android:textColor="@color/text_color_tab"
+        android:gravity="center"
+        android:drawablePadding="4dp"
+        android:id="@+id/tab_all"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="新品上架"
+        android:drawableTop="@drawable/icon_new"
+        android:textColor="@color/text_color_tab"
+        android:gravity="center"
+        android:drawablePadding="4dp"
+        android:id="@+id/tab_new"
+        />
+</LinearLayout>

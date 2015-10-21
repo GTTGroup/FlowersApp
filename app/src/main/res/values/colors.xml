@@ -42,6 +42,7 @@
     <color name="color_666666">#666666</color>
     <color name="color_999999">#999999</color>
     <color name="color_3f000000">#3f000000</color>
+    <color name="color_B66E15">#B66E15</color>
     <bool name="default_circle_indicator_centered">true</bool>
     <color name="default_circle_indicator_fill_color">#FFFFFFFF</color>
     <color name="default_circle_indicator_page_color">#00000000</color>

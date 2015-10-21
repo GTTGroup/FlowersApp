@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,6 +21,7 @@ import android.widget.TextView;
 import com.do1.flowersapp.R;
 import com.do1.flowersapp.activity.FloristsInformationActivity;
 import com.do1.flowersapp.activity.GoodsInfoActicity;
+import com.do1.flowersapp.activity.SellerDetailActivity;
 import com.do1.flowersapp.activity.ShopActivity;
 import com.do1.flowersapp.business.model.HomeShop;
 import com.do1.flowersapp.common.RecyclerArrayAdapter;
@@ -30,10 +30,11 @@ import com.do1.flowersapp.tools.UITools;
 import com.do1.flowersapp.widget.CirclePageIndicator;
 import com.facebook.drawee.view.SimpleDraweeView;
 
-import org.w3c.dom.ProcessingInstruction;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by gufeng
@@ -47,11 +48,15 @@ public class HomeFragment extends ModuleFragment {
     private ViewPager viewPager;
 
     private List<HomeShop> shopList;
+    @Bind(R.id.btn_message)
+    ImageView mTopMessage;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home,null);
+        View view = inflater.inflate(R.layout.fragment_home, null);
+        ButterKnife.bind(this,view);
+        return view;
     }
 
     @Override
@@ -62,6 +67,12 @@ public class HomeFragment extends ModuleFragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_content);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         createAdapter();
+        mTopMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UITools.intent(getActivity(), SellerDetailActivity.class);
+            }
+        });
     }
 
     private void createAdapter() {
