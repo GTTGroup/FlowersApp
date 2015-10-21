@@ -61,6 +61,11 @@
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
             android:theme="@style/Activitytheme" />
         <!--用户登录-->
+        <!-- 商家详情页-->
+        <activity android:name=".activity.SellerDetailActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+                  android:theme="@style/Activitytheme"/>
     </application>
 
 </manifest>
