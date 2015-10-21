@@ -87,12 +87,6 @@ public class HomeFragment extends ModuleFragment {
             public void onFail(String serverRespCode, String severRespFail, JsonElement responseString) {
             }
         });
-        mTopMessage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                UITools.intent(getActivity(), SellerDetailActivity.class);
-            }
-        });
     }
 
     private void createAdapter() {
@@ -172,7 +166,7 @@ public class HomeFragment extends ModuleFragment {
                     @Override
                     public void onClick(View v) {
                         if (shop.shopType == 0) {
-                            UITools.intent(getActivity(), ShopActivity.class);
+                            UITools.intent(getActivity(), SellerDetailActivity.class);
                         } else if(shop.shopType == 1) {
                             UITools.intent(getActivity(), GoodsInfoActicity.class);
                         } else if(shop.shopType == 2) {
