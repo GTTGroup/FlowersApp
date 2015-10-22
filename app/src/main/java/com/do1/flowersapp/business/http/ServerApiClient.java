@@ -7,14 +7,12 @@ import com.do1.flowersapp.tools.SecurityDes3Util;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
-import com.loopj.android.http.ResponseHandlerInterface;
 import com.loopj.android.http.TextHttpResponseHandler;
 
 import org.json.JSONObject;
 
 import java.net.HttpURLConnection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
@@ -152,4 +150,20 @@ public class ServerApiClient {
         params.put("parentId",parentId);
         postSecurity(context, params, url, tag, true, callback);
     }
+
+    /**
+     * 商家详情信息
+     * @param context
+     * @param tag
+     * @param sellerId
+     * @param callback
+     */
+    public void getSellerDetailMessage(Context context, String tag, String sellerId, ServerApiClientCallback callback){
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_SHOP;
+        Map<String,Object> params = new HashMap<>();
+        params.put("id",sellerId);
+        postSecurity(context,params,url,tag,true,callback);
+    }
+
+
 }
