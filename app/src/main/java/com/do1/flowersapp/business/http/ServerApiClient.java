@@ -28,6 +28,8 @@ public class ServerApiClient {
     private static final String APIURL_INDEXADACTION = "/indexAdAction!indexAd.action";
     //商家详情
     private static final String APIURL_SHOP = "/shopAction!shopDtl.action";
+    //商家所有商品分页数据(包含新品、商铺商品搜索)
+    private static final String APIURL_GOODS_BY_SHOP = "/goodsAction!goodsByShop.action";
     //商品详情
     private static final String APIURL_GOODS = "/goodsAction!goodsInfo.action";
     //首页分类
@@ -180,5 +182,17 @@ public class ServerApiClient {
         params.put("id",goodsId);
         postSecurity(context,params,url,tag,true,callback);
     }
+
+    public void getGoodsByShop(Context context, String tag, int pageNum, int pageIndex, String shopId, int type, String keyword, ServerApiClientCallback callback) {
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_GOODS_BY_SHOP;
+        Map<String, Object> params = new HashMap<>();
+        params.put("pageNum", pageNum);
+        params.put("pageIndex", pageIndex);
+        params.put("shopId", shopId);
+        params.put("type", type);
+        params.put("keyword", keyword);
+        postSecurity(context, params, url, tag, true, callback);
+    }
+
 
 }
