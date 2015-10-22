@@ -6,4 +6,5 @@
     <dimen name="item_swipe_width">50dp</dimen>
     <dimen name="category_item_height">28dp</dimen>
     <dimen name="category_recyclerview_list_width">80dp</dimen>
+    <dimen name="seller_detail_item_margin">35dp</dimen>
 </resources>

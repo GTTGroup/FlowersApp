@@ -8,6 +8,13 @@
                 android:paddingLeft="35dp"
                 android:paddingRight="35dp">
 
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/drawee_cover"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        fresco:placeholderImageScaleType="fitXY"
+        fresco:placeholderImage="@drawable/img_default_item"/>
     <RelativeLayout
         android:layout_weight="1"
         android:layout_width="0dp"
@@ -60,12 +67,4 @@
             android:textColor="#adadad"
             />
     </RelativeLayout>
-
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/drawee_cover"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        fresco:placeholderImageScaleType="fitXY"
-        fresco:placeholderImage="@drawable/img_default_item"/>
 </LinearLayout>
