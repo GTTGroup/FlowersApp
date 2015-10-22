@@ -22,7 +22,6 @@ import com.do1.flowersapp.R;
 import com.do1.flowersapp.activity.FloristsInformationActivity;
 import com.do1.flowersapp.activity.GoodsInfoActicity;
 import com.do1.flowersapp.activity.SellerDetailActivity;
-import com.do1.flowersapp.activity.ShopActivity;
 import com.do1.flowersapp.business.http.CommonResp;
 import com.do1.flowersapp.business.http.ServerApiClient;
 import com.do1.flowersapp.business.http.ServerApiClientCallback;
@@ -85,6 +84,12 @@ public class HomeFragment extends ModuleFragment {
 
             @Override
             public void onFail(String serverRespCode, String severRespFail, JsonElement responseString) {
+            }
+        });
+        mTopMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UITools.intent(getActivity(),SellerDetailActivity.class);
             }
         });
     }

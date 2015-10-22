@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.do1.flowersapp.R;
 import com.do1.flowersapp.context.BaseActivity;
 import com.do1.flowersapp.fragment.SellerDetailHomeFragment;
+import com.do1.flowersapp.fragment.SellerDetailSingleFragment;
 import com.do1.flowersapp.tools.ViewHolder;
 import com.do1.flowersapp.widget.PagerSlidingTabStrip;
 
@@ -29,6 +30,7 @@ import butterknife.OnClick;
  * Created by Bruce Too
  * On 10/21/15.
  * At 21:09
+ *  商家详情,店铺详情
  */
 public class SellerDetailActivity extends BaseActivity {
 
@@ -157,10 +159,10 @@ public class SellerDetailActivity extends BaseActivity {
                     fragment = new SellerDetailHomeFragment();
                     break;
                 case 1:
-                    fragment = new SellerDetailHomeFragment();
+                    fragment = new SellerDetailSingleFragment();
                     break;
                 case 2:
-                    fragment = new SellerDetailHomeFragment();
+                    fragment = new SellerDetailSingleFragment();
                     break;
             }
             return fragment;
