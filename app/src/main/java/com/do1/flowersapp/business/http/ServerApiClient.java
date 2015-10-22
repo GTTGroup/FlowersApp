@@ -168,6 +168,33 @@ public class ServerApiClient {
     }
 
     /**
+     * 商家所有商品分类的list(包含新品,商铺商品搜索) 对应 SellerDetailAllFragment
+     * @param context
+     * @param tag
+     * @param shopId
+     * @param pageNum
+     * @param pageIndex
+     * @param type 1、全部（时间）2、销量 3、价格
+     * @param keyword 模糊查询条件
+     * @param callback
+     */
+    public void getSellerDetailList(Context context, String tag, String shopId,String pageNum,String pageIndex,String type,String keyword,ServerApiClientCallback callback){
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_SHOPGOODS;
+        Map<String,Object> params = new HashMap<>();
+        params.put("shopId",shopId);
+        params.put("pageNum",pageNum);
+        params.put("pageIndex",pageIndex);
+        params.put("type",type);
+        params.put("keyword",keyword);
+//        params.put("shopId","s01");
+//        params.put("pageNum","10");
+//        params.put("pageIndex","1");
+//        params.put("type","2");
+//        params.put("keyword","红");
+        postSecurity(context, params, url, tag, true, callback);
+    }
+
+    /**
      * 商品详情(基础信息)
      * @param context
      * @param tag
