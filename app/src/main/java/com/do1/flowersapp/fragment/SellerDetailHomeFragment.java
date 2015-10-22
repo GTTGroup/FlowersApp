@@ -73,7 +73,7 @@ public class SellerDetailHomeFragment extends Fragment implements HomeDetailClic
                 }
                 item.name = "草泥马"+i;
                 item.money = "100"+i;
-                item.sold = "已售:11"+i+"扎";
+                item.sold = String.format(getResources().getString(R.string.seller_sold_num),"10"+i);
                 item.coverUrl = "http://pic7.nipic.com/20100424/4271569_235714000888_2.jpg";
                 datas.add(item);
             }

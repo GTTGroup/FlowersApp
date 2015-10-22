@@ -51,6 +51,7 @@
     <string name="rb_shop">花店</string>
     <string name="rb_wholesaler">批发商</string>
     <string name="rb_manufacturer">生产商</string>
+    <string name="seller_sold_num">已售:%1$s扎</string>
 
     <string name="exit_main">再次点击，退出应用</string>
 
