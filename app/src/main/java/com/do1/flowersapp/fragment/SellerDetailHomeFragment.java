@@ -14,8 +14,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.do1.flowersapp.R;
+import com.do1.flowersapp.business.listener.HomeDetailClickListener;
 import com.do1.flowersapp.business.model.SellerDetailHome;
 import com.do1.flowersapp.tools.DeviceInfo;
 import com.do1.flowersapp.widget.CirclePageIndicator;
@@ -33,7 +35,7 @@ import butterknife.ButterKnife;
  * At 21:24
  * 商家详情页-商家首页tab
  */
-public class SellerDetailHomeFragment extends Fragment {
+public class SellerDetailHomeFragment extends Fragment implements HomeDetailClickListener {
 
     @Bind(R.id.recycler_detail_main)
     RecyclerView mRecyclerView;
@@ -78,8 +80,23 @@ public class SellerDetailHomeFragment extends Fragment {
         }
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter = new HomeRecyclerAdapter(datas);
+        mAdapter = new HomeRecyclerAdapter(datas,this);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onHotFlowerClick(TextView view) {
+        Toast.makeText(getActivity(),view.getText(),Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onItemClick() {
+        Toast.makeText(getActivity(),"点我搞啥子",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onTopAdClick() {
+        Toast.makeText(getActivity(),"广告...",Toast.LENGTH_SHORT).show();
     }
 
 
@@ -89,9 +106,11 @@ public class SellerDetailHomeFragment extends Fragment {
         public final static int VIEW_TYPE_ITEM_RIGHT = 3;
 
         private List<SellerDetailHome> datas;
+        private HomeDetailClickListener listener;
 
-        public HomeRecyclerAdapter(List<SellerDetailHome> datas) {
+        public HomeRecyclerAdapter(List<SellerDetailHome> datas,HomeDetailClickListener listener) {
             this.datas = datas;
+            this.listener = listener;
         }
 
         @Override
@@ -128,6 +147,12 @@ public class SellerDetailHomeFragment extends Fragment {
             holder.money.setText(item.money);
             holder.name.setText(item.name);
             holder.sold.setText(item.sold);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick();
+                }
+            });
         }
 
         private void bindHeaderView(final HeaderViewHolder holder, final SellerDetailHome item) {
@@ -147,6 +172,12 @@ public class SellerDetailHomeFragment extends Fragment {
                     SimpleDraweeView imageView = new SimpleDraweeView(getActivity());
                     imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                     imageView.setImageURI(Uri.parse(item.adUrl));
+                    imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            listener.onTopAdClick();
+                        }
+                    });
                     RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
                     container.addView(imageView, params);
                     return imageView;
@@ -161,6 +192,34 @@ public class SellerDetailHomeFragment extends Fragment {
             holder.first.setText(item.first);
             holder.second.setText(item.second);
             holder.third.setText(item.third);
+
+            holder.first.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onHotFlowerClick(holder.first);
+                }
+            });
+
+            holder.second.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onHotFlowerClick(holder.second);
+                }
+            });
+
+            holder.third.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onHotFlowerClick(holder.third);
+                }
+            });
+
+            holder.four.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onHotFlowerClick(holder.four);
+                }
+            });
         }
 
         @Override
