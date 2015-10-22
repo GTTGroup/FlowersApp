@@ -4,18 +4,25 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.do1.flowersapp.R;
+import com.do1.flowersapp.business.http.CommonResp;
+import com.do1.flowersapp.business.http.ServerApiClient;
+import com.do1.flowersapp.business.http.ServerApiClientCallback;
 import com.do1.flowersapp.context.BaseActivity;
 import com.do1.flowersapp.widget.CirclePageIndicator;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by boluo on 2015/10/21.
@@ -67,5 +74,21 @@ public class GoodsInfoActicity extends BaseActivity {
             }
         });
         indicator.setViewPager(viewPager);
+        ServerApiClient.getInstance().getGoodsInfo(GoodsInfoActicity.this, GoodsInfoActicity.class.getName(), "g01", new ServerApiClientCallback() {
+            @Override
+            public void onSuccess(CommonResp resp) {
+                Log.d("onSuccess", resp.getData().toString());
+            }
+
+            @Override
+            public void onFail(String serverRespCode, String severRespFail, JsonElement responseString) {
+                Log.d("onFail", responseString.toString());
+            }
+
+            @Override
+            public void onError(int statCode, Header[] headers, String responseString) {
+                Log.d("onError", responseString);
+            }
+        });
     }
 }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:background="@drawable/icon_item_bg"
+    android:orientation="vertical">
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/drawee_cover"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_weight="1"
+        fresco:placeholderImage="@drawable/img_default_item"
+        fresco:placeholderImageScaleType="fitXY" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sssss"
+        android:textColor="#4d4d4d"
+        android:layout_below="@+id/drawee_cover"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/text_name"
+        />
+
+    <TextView
+        android:id="@+id/money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_name"
+        android:text="￥"
+        android:textColor="#ff0000"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/money"
+        android:layout_below="@+id/text_name"
+        android:layout_toRightOf="@+id/money"
+        android:text="20"
+        android:textColor="#ff0000"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+   <ImageView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:src="@drawable/icon_goods_car"
+       android:layout_below="@+id/drawee_cover"
+       android:layout_marginTop="25dp"
+       android:layout_alignParentRight="true"
+       />
+
+</RelativeLayout>

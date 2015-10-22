@@ -49,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:id="@+id/text_category_foods"
             android:textColor="@color/color_333333"
             android:text="鲜花分类" />
 
@@ -62,6 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:id="@+id/text_seller_intro"
             android:textColor="@color/color_333333"
             android:text="商家介绍" />
 
@@ -75,6 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:id="@+id/text_contact_seller"
             android:textColor="@color/color_333333"
             android:text="联系卖家" />
 

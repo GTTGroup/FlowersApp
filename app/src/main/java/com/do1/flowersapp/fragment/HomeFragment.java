@@ -22,19 +22,23 @@ import com.do1.flowersapp.R;
 import com.do1.flowersapp.activity.FloristsInformationActivity;
 import com.do1.flowersapp.activity.GoodsInfoActicity;
 import com.do1.flowersapp.activity.SellerDetailActivity;
-import com.do1.flowersapp.activity.ShopActivity;
+import com.do1.flowersapp.business.http.CommonResp;
+import com.do1.flowersapp.business.http.ServerApiClient;
+import com.do1.flowersapp.business.http.ServerApiClientCallback;
 import com.do1.flowersapp.business.model.HomeShop;
 import com.do1.flowersapp.common.RecyclerArrayAdapter;
 import com.do1.flowersapp.context.ModuleFragment;
 import com.do1.flowersapp.tools.UITools;
 import com.do1.flowersapp.widget.CirclePageIndicator;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by gufeng
@@ -67,10 +71,25 @@ public class HomeFragment extends ModuleFragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_content);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         createAdapter();
+        ServerApiClient.getInstance().getHomeAdList(getActivity(), getClass().getName(), new ServerApiClientCallback() {
+            @Override
+            public void onSuccess(CommonResp resp) {
+
+            }
+
+            @Override
+            public void onError(int statCode, Header[] headers, String responseString) {
+
+            }
+
+            @Override
+            public void onFail(String serverRespCode, String severRespFail, JsonElement responseString) {
+            }
+        });
         mTopMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UITools.intent(getActivity(), SellerDetailActivity.class);
+                UITools.intent(getActivity(),SellerDetailActivity.class);
             }
         });
     }
@@ -152,7 +171,7 @@ public class HomeFragment extends ModuleFragment {
                     @Override
                     public void onClick(View v) {
                         if (shop.shopType == 0) {
-                            UITools.intent(getActivity(), ShopActivity.class);
+                            UITools.intent(getActivity(), SellerDetailActivity.class);
                         } else if(shop.shopType == 1) {
                             UITools.intent(getActivity(), GoodsInfoActicity.class);
                         } else if(shop.shopType == 2) {
