@@ -1,5 +1,6 @@
 package com.do1.flowersapp.activity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,15 +17,22 @@ import android.widget.ListPopupWindow;
 import android.widget.Toast;
 
 import com.do1.flowersapp.R;
+import com.do1.flowersapp.business.http.CommonResp;
+import com.do1.flowersapp.business.http.ServerApiClient;
+import com.do1.flowersapp.business.http.ServerApiClientCallback;
+import com.do1.flowersapp.business.model.SellerDetail;
 import com.do1.flowersapp.context.BaseActivity;
 import com.do1.flowersapp.fragment.SellerDetailHomeFragment;
 import com.do1.flowersapp.fragment.SellerDetailSingleFragment;
 import com.do1.flowersapp.tools.ViewHolder;
 import com.do1.flowersapp.widget.PagerSlidingTabStrip;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by Bruce Too
@@ -48,6 +56,7 @@ public class SellerDetailActivity extends BaseActivity {
     private int[] mMessageIcons;
     private String[] mMessageDescs;
     private ListPopupWindow mPopupWindow;
+    private SellerDetail mBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +72,42 @@ public class SellerDetailActivity extends BaseActivity {
 
         mViewPager.setAdapter(new SellerPagerAdapter(getSupportFragmentManager()));
         mPagerSlide.setViewPager(mViewPager);
+
+        ServerApiClient.getInstance().getSellerDetailMessage(this, SellerDetailActivity.class.toString(),
+                "s01", new ServerApiClientCallback() {
+                    @Override
+                    public void onSuccess(CommonResp resp) {
+                        mBean = new Gson().fromJson(resp.getData(), SellerDetail.class);
+                    }
+
+                    @Override
+                    public void onFail(String serverRespCode, String severRespFail, JsonElement responseString) {
+
+                    }
+
+                    @Override
+                    public void onError(int statCode, Header[] headers, String responseString) {
+
+                    }
+                });
+
+        ServerApiClient.getInstance().getSellerDetailList(this, SellerDetailActivity.class.toString(),
+                "s01", "10", "1", "2", "红", new ServerApiClientCallback() {
+                    @Override
+                    public void onSuccess(CommonResp resp) {
+
+                    }
+
+                    @Override
+                    public void onFail(String serverRespCode, String severRespFail, JsonElement responseString) {
+
+                    }
+
+                    @Override
+                    public void onError(int statCode, Header[] headers, String responseString) {
+
+                    }
+                });
     }
 
     //header click
@@ -112,11 +157,13 @@ public class SellerDetailActivity extends BaseActivity {
             });
             mPopupWindow.setWidth((int) getResources().getDimension(R.dimen.message_pop_window_width));
             mPopupWindow.setHeight(ListPopupWindow.WRAP_CONTENT);
-            mPopupWindow.setBackgroundDrawable(getDrawable(R.drawable.ic_msg_bg));
+            mPopupWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_msg_bg));
             mPopupWindow.setModal(false);
             mPopupWindow.setAnchorView(mShowMessage);
             mPopupWindow.setVerticalOffset((int) getResources().getDimension(R.dimen.top_height) - mShowMessage.getBottom());
-            mPopupWindow.setDropDownGravity(Gravity.END);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                mPopupWindow.setDropDownGravity(Gravity.END);
+            }
             mPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

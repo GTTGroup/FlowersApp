@@ -67,6 +67,11 @@
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
                   android:theme="@style/Activitytheme"/>
+        <!-- 异常退货页-->
+        <activity android:name=".activity.OddReturnGoodActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+                  android:theme="@style/Activitytheme"/>
     </application>
 
 </manifest>
