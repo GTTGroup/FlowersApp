@@ -126,7 +126,7 @@ public class SellerDetailHomeFragment extends Fragment implements HomeDetailClic
                     view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_seller_detail_home_item, parent, false);
                 }
                 ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-                layoutParams.height = (int) ((DeviceInfo.getDeviceWidth(parent.getContext()) - getResources().getDimension(R.dimen.seller_detail_item_margin))/2);
+                layoutParams.height = (int) ((DeviceInfo.getDeviceWidth(parent.getContext()) - getResources().getDimension(R.dimen.seller_detail_item_margin)*2)/2);
                 view.setLayoutParams(layoutParams);
                 return new ItemViewHolder(view);
             }

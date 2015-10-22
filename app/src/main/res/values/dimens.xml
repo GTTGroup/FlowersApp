@@ -7,4 +7,5 @@
     <dimen name="category_item_height">28dp</dimen>
     <dimen name="category_recyclerview_list_width">80dp</dimen>
     <dimen name="seller_detail_item_margin">35dp</dimen>
+    <dimen name="message_pop_window_width">150dp</dimen>
 </resources>

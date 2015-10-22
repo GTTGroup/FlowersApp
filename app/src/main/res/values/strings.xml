@@ -54,4 +54,13 @@
 
     <string name="exit_main">再次点击，退出应用</string>
 
+    <string-array name="pop_msg">
+        <item>消息</item>
+        <item>首页</item>
+        <item>收藏</item>
+        <item>分享</item>
+        <item>店铺介绍</item>
+        <item>联系卖家</item>
+    </string-array>
+
 </resources>
