@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/selector_seller_item"
+    android:clickable="true"
+    android:orientation="horizontal"
+    android:paddingLeft="35dp"
+    android:paddingRight="35dp">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/drawee_cover"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        fresco:placeholderImage="@drawable/img_default_item"
+        fresco:placeholderImageScaleType="fitXY" />
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:paddingTop="30dp">
+
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="风信子"
+            android:textColor="@color/color_333333"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_name"
+            android:text="￥"
+            android:textColor="#ff0000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/money"
+            android:layout_below="@+id/text_name"
+            android:layout_toRightOf="@+id/money"
+            android:text="20"
+            android:textColor="#ff0000"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_sold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_money"
+            android:layout_marginTop="20dp"
+            android:singleLine="true"
+            android:text="已售:123扎"
+            android:textColor="#adadad"
+            android:textSize="20sp" />
+    </RelativeLayout>
+</LinearLayout>

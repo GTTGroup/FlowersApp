@@ -7,14 +7,12 @@ import com.do1.flowersapp.tools.SecurityDes3Util;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
-import com.loopj.android.http.ResponseHandlerInterface;
 import com.loopj.android.http.TextHttpResponseHandler;
 
 import org.json.JSONObject;
 
 import java.net.HttpURLConnection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
@@ -30,6 +28,10 @@ public class ServerApiClient {
     private static final String APIURL_INDEXADACTION = "/indexAdAction!indexAd.action";
     //商家详情
     private static final String APIURL_SHOP = "/shopAction!shopDtl.action";
+    //商家所有商品分页数据(包含新品、商铺商品搜索)
+    private static final String APIURL_GOODS_BY_SHOP = "/goodsAction!goodsByShop.action";
+    //商品详情
+    private static final String APIURL_GOODS = "/goodsAction!goodsInfo.action";
     //首页分类
     private static final String APIURL_TYPELIST = "/indexTypeAction!typeList.action";
     //首页分类-子类别
@@ -152,4 +154,72 @@ public class ServerApiClient {
         params.put("parentId",parentId);
         postSecurity(context, params, url, tag, true, callback);
     }
+
+    /**
+     * 商家详情信息
+     * @param context
+     * @param tag
+     * @param sellerId
+     * @param callback
+     */
+    public void getSellerDetailMessage(Context context, String tag, String sellerId, ServerApiClientCallback callback){
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_SHOP;
+        Map<String,Object> params = new HashMap<>();
+        params.put("id",sellerId);
+        postSecurity(context,params,url,tag,true,callback);
+    }
+
+    /**
+     * 商家所有商品分类的list(包含新品,商铺商品搜索) 对应 SellerDetailAllFragment
+     * @param context
+     * @param tag
+     * @param shopId
+     * @param pageNum
+     * @param pageIndex
+     * @param type 1、全部（时间）2、销量 3、价格
+     * @param keyword 模糊查询条件
+     * @param callback
+     */
+    public void getSellerDetailList(Context context, String tag, String shopId,String pageNum,String pageIndex,String type,String keyword,ServerApiClientCallback callback){
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_SHOPGOODS;
+        Map<String,Object> params = new HashMap<>();
+        params.put("shopId",shopId);
+        params.put("pageNum",pageNum);
+        params.put("pageIndex",pageIndex);
+        params.put("type",type);
+        params.put("keyword",keyword);
+//        params.put("shopId","s01");
+//        params.put("pageNum","10");
+//        params.put("pageIndex","1");
+//        params.put("type","2");
+//        params.put("keyword","红");
+        postSecurity(context, params, url, tag, true, callback);
+    }
+
+    /**
+     * 商品详情(基础信息)
+     * @param context
+     * @param tag
+     * @param goodsId
+     * @param callback
+     */
+    public void getGoodsInfo(Context context, String tag, String goodsId, ServerApiClientCallback callback){
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_GOODS;
+        Map<String,Object> params = new HashMap<>();
+        params.put("id",goodsId);
+        postSecurity(context,params,url,tag,true,callback);
+    }
+
+    public void getGoodsByShop(Context context, String tag, int pageNum, int pageIndex, String shopId, int type, String keyword, ServerApiClientCallback callback) {
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_GOODS_BY_SHOP;
+        Map<String, Object> params = new HashMap<>();
+        params.put("pageNum", pageNum);
+        params.put("pageIndex", pageIndex);
+        params.put("shopId", shopId);
+        params.put("type", type);
+        params.put("keyword", keyword);
+        postSecurity(context, params, url, tag, true, callback);
+    }
+
+
 }
