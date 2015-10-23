@@ -8,4 +8,5 @@
     <dimen name="category_recyclerview_list_width">80dp</dimen>
     <dimen name="seller_detail_item_margin">35dp</dimen>
     <dimen name="message_pop_window_width">150dp</dimen>
+    <dimen name="return_goods_item_decoration">10dp</dimen>
 </resources>

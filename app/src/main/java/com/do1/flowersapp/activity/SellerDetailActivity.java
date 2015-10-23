@@ -24,6 +24,7 @@ import com.do1.flowersapp.business.model.SellerDetail;
 import com.do1.flowersapp.context.BaseActivity;
 import com.do1.flowersapp.fragment.SellerDetailHomeFragment;
 import com.do1.flowersapp.fragment.SellerDetailSingleFragment;
+import com.do1.flowersapp.tools.UITools;
 import com.do1.flowersapp.tools.ViewHolder;
 import com.do1.flowersapp.widget.PagerSlidingTabStrip;
 import com.google.gson.Gson;
@@ -113,7 +114,8 @@ public class SellerDetailActivity extends BaseActivity {
     //header click
     @OnClick(R.id.btn_top_back)
     public void topBackClick(){
-        finish();
+//        finish();
+        UITools.intent(this,OddReturnGoodActivity.class);
     }
 
     @OnClick(R.id.img_search)
