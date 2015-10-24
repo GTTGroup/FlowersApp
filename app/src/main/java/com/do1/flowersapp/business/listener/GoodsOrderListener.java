@@ -29,10 +29,4 @@ public interface GoodsOrderListener {
      * @param textPayWay
      */
     void onChoosePayWay(TextView textPayWay);
-
-    /**
-     * 进入花店的点击
-     * @param storeId
-     */
-    void onEnterStore(String storeId);
 }

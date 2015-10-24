@@ -9,6 +9,7 @@
     <dimen name="seller_detail_item_margin">35dp</dimen>
     <dimen name="message_pop_window_width">150dp</dimen>
     <dimen name="return_goods_item_decoration">10dp</dimen>
-    <dimen name="goods_order_item_height">100dp</dimen>
+    <dimen name="goods_order_item_header">41dp</dimen>
+    <dimen name="goods_order_item_footer">59dp</dimen>
     <dimen name="goods_order_normal_height">110dp</dimen>
 </resources>

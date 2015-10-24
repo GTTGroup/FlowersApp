@@ -72,7 +72,13 @@
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
                   android:theme="@style/Activitytheme"/>
+        <!-- 一键下单 界面-->
         <activity android:name=".activity.GoodsOrderActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+                  android:theme="@style/Activitytheme"/>
+        <!-- 确认订单 界面-->
+        <activity android:name=".activity.ConfirmOrderActivity"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
                   android:theme="@style/Activitytheme"/>

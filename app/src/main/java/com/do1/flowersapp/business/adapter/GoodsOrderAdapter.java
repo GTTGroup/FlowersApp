@@ -10,8 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.do1.flowersapp.R;
-import com.do1.flowersapp.activity.GoodsOrderActivity;
 import com.do1.flowersapp.business.listener.GoodsOrderListener;
+import com.do1.flowersapp.business.listener.OrderHomeUpdateListener;
 import com.do1.flowersapp.business.model.GoodsOrderItem;
 import com.do1.flowersapp.common.BaseRecyclerViewAdapter;
 
@@ -31,14 +31,16 @@ public class GoodsOrderAdapter extends BaseRecyclerViewAdapter {
     private Context mContext;
     private GoodsOrderListener mListener;
     private List<GoodsOrderItem> datas;
-    private GoodsOrderActivity.HomeUpdateListener homeUpdateListener;
+    private OrderHomeUpdateListener orderHomeUpdateListener;
+    private boolean hasHeader;
 
     public GoodsOrderAdapter(Context context, GoodsOrderListener listener, List<GoodsOrderItem> datas,
-                             GoodsOrderActivity.HomeUpdateListener homeUpdateListener) {
+                             boolean hasHeader, OrderHomeUpdateListener orderHomeUpdateListener) {
         this.mContext = context;
         this.mListener = listener;
         this.datas = datas;
-        this.homeUpdateListener = homeUpdateListener;
+        this.orderHomeUpdateListener = orderHomeUpdateListener;
+        this.hasHeader = hasHeader;
     }
 
     @Override
@@ -50,7 +52,7 @@ public class GoodsOrderAdapter extends BaseRecyclerViewAdapter {
     @Override
     public void onBindHeaderView(RecyclerView.ViewHolder holder, int position) {
         final HeaderViewHolder viewHolder = (HeaderViewHolder) holder;
-        viewHolder.bottomLayout.setOnClickListener(new View.OnClickListener() {
+        viewHolder.topLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.onChooseLocation(viewHolder.textName,viewHolder.textPhone,viewHolder.textAddress);
@@ -82,11 +84,18 @@ public class GoodsOrderAdapter extends BaseRecyclerViewAdapter {
     public void onBindBasicItemView(RecyclerView.ViewHolder holder, int position) {
         ItemViewHolder viewHolder = (ItemViewHolder) holder;
         viewHolder.recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        viewHolder.recyclerView.setAdapter(new GoodsOrderItemAdapter(mContext, mListener,
-                datas.get(position),viewHolder.recyclerView,homeUpdateListener,position));
-        viewHolder.recyclerView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                (int) (mContext.getResources().getDimension(R.dimen.goods_order_item_height)+ datas.get(position).flowers.size()
-                        * mContext.getResources().getDimension(R.dimen.goods_order_normal_height))));
+        viewHolder.recyclerView.setAdapter(new GoodsOrderItemAdapter(mContext,
+                datas.get(position),viewHolder.recyclerView, orderHomeUpdateListener,hasHeader,position));
+        if(datas.get(position).isStore) {
+            viewHolder.recyclerView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    (int) (mContext.getResources().getDimension(R.dimen.goods_order_item_header)+
+                            mContext.getResources().getDimension(R.dimen.goods_order_item_footer)+ datas.get(position).flowers.size()
+                            * mContext.getResources().getDimension(R.dimen.goods_order_normal_height))));
+        }else {
+            viewHolder.recyclerView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    (int) (mContext.getResources().getDimension(R.dimen.goods_order_item_header) + datas.get(position).flowers.size()
+                            * mContext.getResources().getDimension(R.dimen.goods_order_normal_height))));
+        }
     }
 
     @Override
@@ -135,7 +144,7 @@ public class GoodsOrderAdapter extends BaseRecyclerViewAdapter {
 
     @Override
     public boolean useHeader() {
-        return true;
+        return hasHeader;
     }
 
     @Override

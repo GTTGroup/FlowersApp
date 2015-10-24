@@ -13,8 +13,7 @@ import android.widget.TextView;
 
 import com.daimajia.swipe.SwipeLayout;
 import com.do1.flowersapp.R;
-import com.do1.flowersapp.activity.GoodsOrderActivity;
-import com.do1.flowersapp.business.listener.GoodsOrderListener;
+import com.do1.flowersapp.business.listener.OrderHomeUpdateListener;
 import com.do1.flowersapp.business.model.GoodsOrderItem;
 import com.do1.flowersapp.common.BaseRecyclerViewAdapter;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -30,21 +29,21 @@ import butterknife.ButterKnife;
  */
 public class GoodsOrderItemAdapter extends BaseRecyclerViewAdapter {
     private Context mContext;
-    private GoodsOrderListener mListener;
     private GoodsOrderItem data;
     private RecyclerView recyclerView;
-    private GoodsOrderActivity.HomeUpdateListener homeUpdateListener;
-    private int position; // 第几个item
+    private OrderHomeUpdateListener orderHomeUpdateListener;
+    private boolean hasHeader;
+    private int postionOuter;// 第几个item
 
-    public GoodsOrderItemAdapter(Context context, GoodsOrderListener listener,
+    public GoodsOrderItemAdapter(Context context,
                                  GoodsOrderItem data, RecyclerView recyclerView,
-                                 GoodsOrderActivity.HomeUpdateListener homeUpdateListener, int position) {
+                                 OrderHomeUpdateListener orderHomeUpdateListener, boolean hasHeader, int position) {
         this.mContext = context;
-        this.mListener = listener;
         this.data = data;
         this.recyclerView = recyclerView;
-        this.homeUpdateListener = homeUpdateListener;
-        this.position = position;
+        this.orderHomeUpdateListener = orderHomeUpdateListener;
+        this.hasHeader = hasHeader;
+        this.postionOuter = position;
     }
 
     @Override
@@ -56,11 +55,15 @@ public class GoodsOrderItemAdapter extends BaseRecyclerViewAdapter {
     @Override
     public void onBindHeaderView(RecyclerView.ViewHolder holder, int position) {
         HeaderViewHolder viewHolder = (HeaderViewHolder) holder;
-        viewHolder.storeName.setText(data.storeName);
+        if(data.isStore){
+            viewHolder.storeName.setText(data.storeName);
+        }else {
+            viewHolder.storeName.setText(data.floristsName);
+        }
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onEnterStore("s01");
+                orderHomeUpdateListener.onEnterStore("s01");
             }
         });
     }
@@ -97,8 +100,13 @@ public class GoodsOrderItemAdapter extends BaseRecyclerViewAdapter {
     public void onBindBasicItemView(RecyclerView.ViewHolder holder, final int position) {
         final ItemViewHolder viewHolder = (ItemViewHolder) holder;
         final GoodsOrderItem.GoodsOrderSingle single = data.flowers.get(position);
-        viewHolder.flowerDetail1.setText(single.flowerDetail1+"/扎");
-        viewHolder.flowerDetail2.setText("￥"+single.flowerDetail2+"/扎");
+        if(data.isStore) {//商品
+            viewHolder.flowerDetail1.setText(single.flowerDetail1 + "/扎");
+            viewHolder.flowerDetail2.setText("￥" + single.flowerDetail2 + "/扎");
+        }else { //花艺师
+            viewHolder.flowerDetail1.setText(single.flowerDetail4);
+            viewHolder.flowerDetail2.setText("￥" + single.flowerDetail2 + "/人天");
+        }
         viewHolder.flowerDetail3.setText(single.flowerDetail3);
         viewHolder.flowerImg.setImageURI(Uri.parse(single.flowerUrl));
         viewHolder.flowerName.setText(single.flowerName);
@@ -118,8 +126,8 @@ public class GoodsOrderItemAdapter extends BaseRecyclerViewAdapter {
                notifyItemRemoved(position);
                updateFooterView();
                 //通知外层界面刷新
-                notifyHomeUpdate(position);
-                Log.e("更新最外层的数据:", "移除店铺'" + data.storeName + "'中的" + single.counter + "朵 <" + single.flowerName + ">花");
+                notifyHomeUpdate(postionOuter);
+                Log.e("onHomeUpdate:", "移除店铺'" + data.storeName + "'中的" + single.counter + "朵 <" + single.flowerName + ">花");
             }
         });
 
@@ -130,7 +138,7 @@ public class GoodsOrderItemAdapter extends BaseRecyclerViewAdapter {
                 notifyItemChanged(position+1);
                 updateFooterView();
                 //通知外层界面刷新
-                notifyHomeUpdate(position);
+                notifyHomeUpdate(postionOuter);
             }
         });
 
@@ -143,7 +151,7 @@ public class GoodsOrderItemAdapter extends BaseRecyclerViewAdapter {
                     notifyItemChanged(position+1);
                     updateFooterView();
                     //通知外层界面刷新
-                    notifyHomeUpdate(position);
+                    notifyHomeUpdate(postionOuter);
                 }
             }
         });
@@ -167,7 +175,7 @@ public class GoodsOrderItemAdapter extends BaseRecyclerViewAdapter {
 
     @Override
     public boolean useFooter() {
-        return true;
+        return data.isStore;
     }
 
     /**
@@ -175,7 +183,7 @@ public class GoodsOrderItemAdapter extends BaseRecyclerViewAdapter {
      * @param position
      */
     private void notifyHomeUpdate(int position) {
-        homeUpdateListener.onHomeUpdate(position, data);
+        orderHomeUpdateListener.onHomeUpdate(position, data);
     }
 
     /**
@@ -189,9 +197,16 @@ public class GoodsOrderItemAdapter extends BaseRecyclerViewAdapter {
      * 强制刷新布局
      */
     private void updateLayout(){
-        recyclerView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                (int) (mContext.getResources().getDimension(R.dimen.goods_order_item_height)+ data.flowers.size()
-                        * mContext.getResources().getDimension(R.dimen.goods_order_normal_height))));
+        if(hasHeader) {
+            recyclerView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    (int) (mContext.getResources().getDimension(R.dimen.goods_order_item_header)+
+                            mContext.getResources().getDimension(R.dimen.goods_order_item_footer)+ data.flowers.size()
+                            * mContext.getResources().getDimension(R.dimen.goods_order_normal_height))));
+        }else {
+            recyclerView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    (int) (mContext.getResources().getDimension(R.dimen.goods_order_item_header) + data.flowers.size()
+                            * mContext.getResources().getDimension(R.dimen.goods_order_normal_height))));
+        }
         recyclerView.requestLayout();
     }
 

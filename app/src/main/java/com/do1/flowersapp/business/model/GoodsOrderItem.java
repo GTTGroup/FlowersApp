@@ -18,6 +18,7 @@ public class GoodsOrderItem {
         public String flowerUrl;
         public String flowerName;
         public int flowerDetail1; //20/扎
+        public String flowerDetail4; //高级花艺师
         public int flowerDetail2; //￥25/扎
         public String flowerDetail3; //红色 A级 单头
         public int counter; // 加减的个数
@@ -27,5 +28,7 @@ public class GoodsOrderItem {
     public int shipment;//运费
 //    public int totalFlowers;//总共商品数
 //    public int totalMoney;
+    public boolean isStore;//是否是花店 否则是 花艺师
+    public String floristsName; //花艺师名字
 
 }
