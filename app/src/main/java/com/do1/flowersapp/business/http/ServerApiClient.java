@@ -183,11 +183,11 @@ public class ServerApiClient {
     public void getSellerDetailList(Context context, String tag, String shopId,String pageNum,String pageIndex,String type,String keyword,ServerApiClientCallback callback){
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_SHOPGOODS;
         Map<String,Object> params = new HashMap<>();
-        params.put("shopId",shopId);
         params.put("pageNum",pageNum);
         params.put("pageIndex",pageIndex);
+        params.put("shopId",shopId);
         params.put("type",type);
-        params.put("keyword",keyword);
+        params.put("keyword","");
 //        params.put("shopId","s01");
 //        params.put("pageNum","10");
 //        params.put("pageIndex","1");

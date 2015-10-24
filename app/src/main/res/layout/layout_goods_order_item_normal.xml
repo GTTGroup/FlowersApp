@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:fresco="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="9dp"
+                android:paddingRight="11dp"
+                android:paddingTop="11dp">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/drawee_cover"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginRight="10dp"
+        fresco:placeholderImage="@drawable/img_default_item"
+        fresco:placeholderImageScaleType="fitXY"/>
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_toRightOf="@+id/drawee_cover"
+        android:text="大桃红"
+        android:textColor="@color/color_666666"
+        />
+
+    <TextView
+        android:id="@+id/text_detail1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_name"
+        android:layout_toRightOf="@+id/drawee_cover"
+        android:text="20/扎"
+        android:textColor="@color/color_666666"
+        />
+
+    <TextView
+        android:id="@+id/text_detail2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_name"
+        android:layout_marginLeft="4dp"
+        android:layout_toRightOf="@+id/text_detail1"
+        android:text="￥25/扎"
+        android:textColor="@color/FF0000"
+        />
+
+    <TextView
+        android:id="@+id/text_detail3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_detail1"
+        android:layout_marginTop="4dp"
+        android:layout_toRightOf="@+id/drawee_cover"
+        android:text="红色 单头 A级"
+        android:textColor="@color/color_666666"
+        />
+
+    <TextView
+        android:id="@+id/text_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/drawee_cover"
+        android:layout_marginTop="10dp"
+        android:text="备注:"
+        android:textColor="@color/color_666666"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="25dp">
+
+        <include layout="@layout/common_add_sub_view"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/text_tips"
+        android:layout_marginTop="10dp"
+        android:background="@color/B3B2B2"/>
+</RelativeLayout>

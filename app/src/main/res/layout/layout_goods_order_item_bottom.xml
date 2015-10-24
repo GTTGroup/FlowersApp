@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:paddingLeft="11dp"
+                android:paddingRight="11dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/FF0000"
+            android:text="1,000,00"
+            android:textSize="20sp"
+            android:id="@+id/text_money"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="合计:"
+            android:textColor="@color/color_333333"
+            android:textSize="20sp"
+            android:id="@+id/text_total"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/text_money"
+            android:layout_alignParentBottom="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="共60件商品"
+            android:layout_marginRight="20dp"
+            android:textSize="20sp"
+            android:textColor="@color/color_333333"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/text_total"
+            android:layout_alignParentBottom="true"
+            />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_send_money"
+        android:text="￥30"
+        android:textSize="20sp"
+        android:textColor="@color/color_333333"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="运费:"
+        android:textSize="20sp"
+        android:textColor="@color/color_333333"
+        android:layout_marginTop="5dp"
+        />
+</RelativeLayout>
