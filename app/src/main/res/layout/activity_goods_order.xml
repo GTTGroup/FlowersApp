@@ -57,6 +57,7 @@
             android:textSize="15sp"
             android:textColor="@color/B3B2B2"
             android:layout_marginTop="5dp"
+            android:id="@+id/text_total_count"
             />
     </RelativeLayout>
 </LinearLayout>

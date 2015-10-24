@@ -115,7 +115,8 @@ public class SellerDetailActivity extends BaseActivity {
     @OnClick(R.id.btn_top_back)
     public void topBackClick(){
 //        finish();
-        UITools.intent(this,OddReturnGoodActivity.class);
+//        UITools.intent(this,OddReturnGoodActivity.class);
+        UITools.intent(this, GoodsOrderActivity.class);
     }
 
     @OnClick(R.id.img_search)
