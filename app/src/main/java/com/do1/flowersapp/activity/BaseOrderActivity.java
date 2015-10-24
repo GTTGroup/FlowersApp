@@ -4,7 +4,6 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -73,8 +72,6 @@ public class BaseOrderActivity extends BaseActivity implements GoodsOrderListene
 
             @Override
             public void onHomeUpdate(int position, GoodsOrderItem data) {
-                Log.e("onHomeUpdate:",position+"");
-                Log.e("onHomeUpdate:",data.flowers.get(position).counter+"");
                 datas.set(position,data);
                 updateHomeValue();
             }
