@@ -1,12 +1,3 @@
-/**  company:   www.163.com
- *                      在线游戏事业部 
- *                      回声工作室
- *                      程序组
- *    工作编号:    G7525
- *    creator:      谷峰
- *    create on:  2014年8月15日   上午11:01:53
- *          坚持不懈,终会成功
- */
 package com.do1.flowersapp.tools;
 
 import android.annotation.SuppressLint;
@@ -16,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.util.Linkify;
 import android.util.SparseArray;
@@ -31,8 +21,6 @@ import android.widget.TextView;
 
 /**
  * ViewHolder for Adapter view
- * @author G7525
- *
  */
 public class ViewHolder {
     private SparseArray<View> holder;
