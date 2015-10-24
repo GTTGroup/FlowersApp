@@ -4,44 +4,8 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
 
-        <ImageView
-            android:id="@+id/btn_top_back"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:scaleType="center"
-            android:layout_alignParentLeft="true"
-            android:src="@drawable/btn_top_back" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="异常退货"
-            android:textSize="20sp"
-            android:textColor="@android:color/black"
-            android:layout_centerInParent="true"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="选择"
-            android:textSize="20sp"
-            android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"
-            android:layout_marginRight="10dp"
-            android:textColor="@color/FC8600"
-            android:id="@+id/text_choose"
-            />
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@drawable/icon_line_odd_good"/>
+    <include layout="@layout/activity_normal_header"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_weight="1"

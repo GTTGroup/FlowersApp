@@ -1,12 +1,3 @@
-/**  company:   www.163.com
- *                      在线游戏事业部 
- *                      回声工作室
- *                      程序组
- *    工作编号:    G7525
- *    creator:      谷峰
- *    create on:  2014年12月16日   下午6:36:58
- *          坚持不懈,终会成功
- */
 package com.do1.flowersapp.tools;
 
 import android.app.ActivityManager;
@@ -32,8 +23,6 @@ import java.util.List;
 
 /**
  * 获取设备相关
- * @author G7525
- *
  */
 public class DeviceInfo {
 	

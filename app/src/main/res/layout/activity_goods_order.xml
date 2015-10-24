@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+     <include layout="@layout/activity_normal_header"/>
+
+     <android.support.v7.widget.RecyclerView
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+         android:layout_weight="1"
+         android:id="@+id/recycler_view"
+         />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/icon_btn_bg"
+            android:layout_alignParentRight="true"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:text="确认"
+            android:id="@+id/btn_confirm"
+            android:layout_marginLeft="15dp"
+            />
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textColor="@color/FF0000"
+             android:text="1,000,00"
+             android:textSize="20sp"
+             android:layout_toLeftOf="@+id/btn_confirm"
+             android:id="@+id/text_money"
+             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="合计:"
+            android:textColor="@color/color_333333"
+            android:textSize="20sp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/text_money"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="共60件商品"
+            android:layout_toLeftOf="@+id/btn_confirm"
+            android:layout_below="@+id/text_money"
+            android:layout_marginRight="20dp"
+            android:textSize="15sp"
+            android:textColor="@color/B3B2B2"
+            android:layout_marginTop="5dp"
+            android:id="@+id/text_total_count"
+            />
+    </RelativeLayout>
+</LinearLayout>

@@ -115,7 +115,8 @@ public class SellerDetailActivity extends BaseActivity {
     @OnClick(R.id.btn_top_back)
     public void topBackClick(){
 //        finish();
-        UITools.intent(this,OddReturnGoodActivity.class);
+//        UITools.intent(this,OddReturnGoodActivity.class);
+        UITools.intent(this, GoodsOrderActivity.class);
     }
 
     @OnClick(R.id.img_search)
@@ -169,6 +170,7 @@ public class SellerDetailActivity extends BaseActivity {
             mPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    mPopupWindow.dismiss();
                     Toast.makeText(SellerDetailActivity.this, "点击了第"+position+"个item", Toast.LENGTH_SHORT).show();
                 }
             });
