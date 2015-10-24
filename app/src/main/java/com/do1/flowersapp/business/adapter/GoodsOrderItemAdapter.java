@@ -107,6 +107,7 @@ public class GoodsOrderItemAdapter extends BaseRecyclerViewAdapter {
 
         viewHolder.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
         viewHolder.swipeLayout.addDrag(SwipeLayout.DragEdge.Left, viewHolder.layoutBottom);
+        viewHolder.swipeLayout.setLeftSwipeEnabled(false);
         //点击删除
         viewHolder.layoutBottom.setOnClickListener(new View.OnClickListener() {
             @Override
