@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.do1.flowersapp.R;
+import com.do1.flowersapp.activity.MainActivity;
 import com.do1.flowersapp.activity.NeedPayActivity;
 import com.do1.flowersapp.activity.OrderActivity;
 import com.do1.flowersapp.activity.UserPersonalActivity;
@@ -40,6 +41,8 @@ public class PersonalFragment extends ModuleFragment implements View.OnClickList
     LinearLayout llUserOrder;
     @Bind(R.id.rl_pay_money)
     RelativeLayout rlPayMoney;
+    @Bind(R.id.rl_purchase_bill)
+    RelativeLayout rlPurchaseBill;
     @Bind(R.id.btn_setting)
     ImageView btnSetting;
     @Bind(R.id.drawee_avator)
@@ -64,6 +67,7 @@ public class PersonalFragment extends ModuleFragment implements View.OnClickList
         llUserOrder.setOnClickListener(this);
         btnSetting.setOnClickListener(this);
         rlPayMoney.setOnClickListener(this);
+        rlPurchaseBill.setOnClickListener(this);
         textUserName.setText(UserConfig.getUserNickName(getActivity()));
     }
 
@@ -79,6 +83,8 @@ public class PersonalFragment extends ModuleFragment implements View.OnClickList
             UITools.intent(getActivity(), NeedPayActivity.class);
         } else if(v == draweeView) {
             UITools.intent(getActivity(), UserPersonalActivity.class);
+        } else if(v == rlPurchaseBill) {
+            ((MainActivity)getActivity()).instantiateFragment(2);
         }
     }
 }

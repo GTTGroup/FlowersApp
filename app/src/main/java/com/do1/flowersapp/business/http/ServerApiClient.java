@@ -181,6 +181,16 @@ public class ServerApiClient {
     }
 
     /**
+     * 获取首页类别品种
+     */
+    public void getGoodsTypeList(Context context,String tag,String goodsType,ServerApiClientCallback callback) {
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_GOODSLIST;
+        Map<String,Object> params = new HashMap<>();
+        params.put("goodsType",goodsType);
+        postSecurity(context, params, url, tag, true, callback);
+    }
+
+    /**
      * 商家详情信息
      * @param context
      * @param tag

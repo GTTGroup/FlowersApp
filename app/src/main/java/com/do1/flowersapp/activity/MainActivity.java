@@ -174,7 +174,7 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private void instantiateFragment(int position) {
+    public void instantiateFragment(int position) {
         if (tabPosition != position) {
             tabPosition = position;
             setSelectedTab(tabPosition);

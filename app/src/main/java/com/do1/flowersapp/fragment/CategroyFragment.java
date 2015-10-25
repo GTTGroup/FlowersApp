@@ -20,6 +20,7 @@ import com.do1.flowersapp.business.http.ServerApiClient;
 import com.do1.flowersapp.business.http.ServerApiClientCallback;
 import com.do1.flowersapp.business.model.CategoryItem;
 import com.do1.flowersapp.business.model.CategoryList;
+import com.do1.flowersapp.business.model.CategoryVariety;
 import com.do1.flowersapp.common.RecyclerArrayAdapter;
 import com.do1.flowersapp.common.RecyclerItemClickListener;
 import com.do1.flowersapp.context.ModuleFragment;
@@ -107,12 +108,36 @@ public class CategroyFragment extends ModuleFragment {
         getSubCategory(categoryList.get(selectedCategoryPosition).getId());
     }
 
-    private void addCategoryItemView(String title,List<CategoryItem.Category> categoryList) {
+    private void addCategoryVarietyItemView(List<CategoryVariety.Variety> varietyList) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.recycler_item_category_item,null);
+        llCategoryItem.addView(view);
+        TextView textTitle = (TextView) view.findViewById(R.id.text_category_item);
+        textTitle.setText("品种");
+        FlowLayout flowCategory = (FlowLayout) view.findViewById(R.id.layout_category_item);
+        int deviceWidth = DeviceInfo.getDeviceWidth(getActivity());
+        int listRecyclerViewWidth = getResources().getDimensionPixelSize(R.dimen.category_recyclerview_list_width);
+        int radioButtonHeight = getResources().getDimensionPixelSize(R.dimen.category_item_height);
+        int nButtonWidth = (deviceWidth-listRecyclerViewWidth-(flowCategory.getSelfHorSpacing()*3) - flowCategory.getPaddingLeft() - flowCategory.getPaddingRight()) / 4;
+        for (final CategoryVariety.Variety item : varietyList) {
+            final RadioButton rbTag = (RadioButton) LayoutInflater.from(getActivity()).inflate(R.layout.view_category_item, null);
+            rbTag.setLayoutParams(new FlowLayout.LayoutParams(nButtonWidth, radioButtonHeight));
+            rbTag.setText(item.getGoodsName());
+            rbTag.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            flowCategory.addView(rbTag);
+        }
+    }
+
+    private void addCategoryItemView(List<CategoryItem.Category> categoryList) {
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.recycler_item_category_item,null);
+        llCategoryItem.addView(view);
         TextView textTitle = (TextView) view.findViewById(R.id.text_category_item);
         FlowLayout flowCategory = (FlowLayout) view.findViewById(R.id.layout_category_item);
-        llCategoryItem.addView(view);
-        textTitle.setText(title);
+        textTitle.setText("分类");
         int deviceWidth = DeviceInfo.getDeviceWidth(getActivity());
         int listRecyclerViewWidth = getResources().getDimensionPixelSize(R.dimen.category_recyclerview_list_width);
         int radioButtonHeight = getResources().getDimensionPixelSize(R.dimen.category_item_height);
@@ -124,12 +149,12 @@ public class CategroyFragment extends ModuleFragment {
             rbTag.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ServerApiClient.getInstance().getSubTypeList(getActivity(), getClass().getName(), item.getId(), new ServerApiClientCallback() {
+                    ServerApiClient.getInstance().getGoodsTypeList(getActivity(), getClass().getName(), item.getId(), new ServerApiClientCallback() {
                         @Override
                         public void onSuccess(CommonResp resp) {
-                            CategoryItem categoryList = new Gson().fromJson(resp.getData(), CategoryItem.class);
+                            CategoryVariety categoryList = new Gson().fromJson(resp.getData(), CategoryVariety.class);
                             if (null != categoryList && categoryList.getList().size() > 0) {
-                                addCategoryItemView("种类",categoryList.getList());
+                                addCategoryVarietyItemView(categoryList.getList());
                             }
                         }
 
@@ -150,12 +175,14 @@ public class CategroyFragment extends ModuleFragment {
     }
 
     private void getSubCategory(String parentId) {
+        if (llCategoryItem.getChildCount() == 2)
+            llCategoryItem.removeViewAt(1);
         ServerApiClient.getInstance().getSubTypeList(getActivity(), getClass().getName(), parentId, new ServerApiClientCallback() {
             @Override
             public void onSuccess(CommonResp resp) {
                 CategoryItem categoryList = new Gson().fromJson(resp.getData(), CategoryItem.class);
                 if (null != categoryList && categoryList.getList().size() > 0) {
-                    addCategoryItemView("分类",categoryList.getList());
+                    addCategoryItemView(categoryList.getList());
                 }
             }
 

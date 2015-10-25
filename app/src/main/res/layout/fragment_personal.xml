@@ -207,7 +207,7 @@
                 android:background="@color/B2B2B2" />
 
             <RelativeLayout
-                android:id="@+id/rl_personal_order"
+                android:id="@+id/rl_purchase_bill"
                 android:layout_width="match_parent"
                 android:layout_height="41dp"
                 android:background="@drawable/bg_top">
