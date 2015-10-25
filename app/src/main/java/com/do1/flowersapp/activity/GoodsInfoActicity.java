@@ -206,10 +206,27 @@ public class GoodsInfoActicity extends BaseActivity implements TBLayout.OnPullLi
             }
         });
 
-        ServerApiClient.getInstance().getGoodsByShop(GoodsInfoActicity.this, GoodsInfoActicity.class.getName(), 10, 1, "s01", 2, "红", new ServerApiClientCallback() {
+        ServerApiClient.getInstance().getGoodsSkuList(GoodsInfoActicity.this, GoodsInfoActicity.class.getName(), "g01", new ServerApiClientCallback() {
             @Override
             public void onSuccess(CommonResp resp) {
-                Log.d("onSuccess", resp.getData().toString());
+                Log.d("getGoodsSkuList", resp.getData().toString());
+            }
+
+            @Override
+            public void onFail(String serverRespCode, String severRespFail, JsonElement responseString) {
+                Log.d("onFail", responseString.toString());
+            }
+
+            @Override
+            public void onError(int statCode, Header[] headers, String responseString) {
+                Log.d("onError", responseString);
+            }
+        });
+
+        ServerApiClient.getInstance().getGoodsAttrbySku(GoodsInfoActicity.this, GoodsInfoActicity.class.getName(), "g01", "1;3;5", new ServerApiClientCallback() {
+            @Override
+            public void onSuccess(CommonResp resp) {
+                Log.d("getGoodsAttrbySku", resp.getData().toString());
             }
 
             @Override

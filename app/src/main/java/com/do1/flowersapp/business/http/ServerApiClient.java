@@ -28,10 +28,12 @@ public class ServerApiClient {
     private static final String APIURL_INDEXADACTION = "/indexAdAction!indexAd.action";
     //商家详情
     private static final String APIURL_SHOP = "/shopAction!shopDtl.action";
-    //商家所有商品分页数据(包含新品、商铺商品搜索)
-    private static final String APIURL_GOODS_BY_SHOP = "/goodsAction!goodsByShop.action";
     //商品详情
     private static final String APIURL_GOODS = "/goodsAction!goodsInfo.action";
+    //商品规格列表
+    private static final String APIURL_GOODS_SKULIST = "/goodsAction!goodsSkuList.action";
+    //商品规格对应的属性
+    private static final String APIURL_GOODS_ATTRBYSKU = "/goodsAction!goodsAttrBySku.action";
     //首页分类
     private static final String APIURL_TYPELIST = "/indexTypeAction!typeList.action";
     //首页分类-子类别
@@ -210,16 +212,34 @@ public class ServerApiClient {
         postSecurity(context,params,url,tag,true,callback);
     }
 
-    public void getGoodsByShop(Context context, String tag, int pageNum, int pageIndex, String shopId, int type, String keyword, ServerApiClientCallback callback) {
-        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_GOODS_BY_SHOP;
+    /**
+     * 商品规格列表
+     * @param context
+     * @param tag
+     * @param goodsId
+     * @param callback
+     */
+    public void getGoodsSkuList(Context context, String tag, String goodsId, ServerApiClientCallback callback) {
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_GOODS_SKULIST;
         Map<String, Object> params = new HashMap<>();
-        params.put("pageNum", pageNum);
-        params.put("pageIndex", pageIndex);
-        params.put("shopId", shopId);
-        params.put("type", type);
-        params.put("keyword", keyword);
+        params.put("id",goodsId);
         postSecurity(context, params, url, tag, true, callback);
     }
 
+    /**
+     * 商品规格对应的属性
+     * @param context
+     * @param tag
+     * @param goodsId
+     * @param skuIds
+     * @param callback
+     */
+    public void getGoodsAttrbySku(Context context, String tag, String goodsId, String skuIds, ServerApiClientCallback callback) {
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_GOODS_ATTRBYSKU;
+        Map<String, Object> params = new HashMap<>();
+        params.put("id",goodsId);
+        params.put("skuIds",skuIds);
+        postSecurity(context, params, url, tag, true, callback);
+    }
 
 }

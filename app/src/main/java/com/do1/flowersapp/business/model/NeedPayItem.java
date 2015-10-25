@@ -5,11 +5,11 @@ package com.do1.flowersapp.business.model;
  * 应付账款
  */
 public class NeedPayItem {
-    public String custNane;
+    public String custName;
     public float needPay;
 
-    public NeedPayItem(String custNane, float needPay) {
-        this.custNane = custNane;
+    public NeedPayItem(String custName, float needPay) {
+        this.custName = custName;
         this.needPay = needPay;
     }
 }
