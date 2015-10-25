@@ -12,7 +12,6 @@ import android.widget.Scroller;
 
 import com.do1.flowersapp.R;
 
-//com.taobao.detailview.TBLayout
 public class TBLayout extends LinearLayout {
     private OnPullListener pullListener;
     private OnPageChangedListener ctListener;

@@ -59,7 +59,7 @@ public class NeedPayActivity extends BaseActivity {
         rvData.setAdapter(new RVAapter<NeedPayItem>(list, R.layout.layout_need_pay_list_item) {
             @Override
             public void onBindViewHolder(RViewHolder holder, int position) {
-                holder.setText(R.id.tv_cust_nane, getItem(position).custNane);
+                holder.setText(R.id.tv_cust_nane, getItem(position).custName);
                 holder.setText(R.id.tv_need_pay, "￥" + new DecimalFormat(".00").format(getItem(position).needPay));
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
