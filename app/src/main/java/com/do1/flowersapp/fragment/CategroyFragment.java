@@ -149,6 +149,8 @@ public class CategroyFragment extends ModuleFragment {
             rbTag.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (llCategoryItem.getChildCount() == 2)
+                        llCategoryItem.removeViewAt(1);
                     ServerApiClient.getInstance().getGoodsTypeList(getActivity(), getClass().getName(), item.getId(), new ServerApiClientCallback() {
                         @Override
                         public void onSuccess(CommonResp resp) {
@@ -175,8 +177,6 @@ public class CategroyFragment extends ModuleFragment {
     }
 
     private void getSubCategory(String parentId) {
-        if (llCategoryItem.getChildCount() == 2)
-            llCategoryItem.removeViewAt(1);
         ServerApiClient.getInstance().getSubTypeList(getActivity(), getClass().getName(), parentId, new ServerApiClientCallback() {
             @Override
             public void onSuccess(CommonResp resp) {

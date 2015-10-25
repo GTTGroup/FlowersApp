@@ -21,6 +21,7 @@
     <string name="title_setting">系统设置</string>
     <string name="title_forgetpassword">忘记密码</string>
     <string name="title_updatepassword">修改密码</string>
+    <string name="title_user_order">我的订单</string>
 
     <string name="hint_input_commodity_name">请输入商品名称</string>
     <string name="hint_input_receve_name">请输入收货人姓名</string>

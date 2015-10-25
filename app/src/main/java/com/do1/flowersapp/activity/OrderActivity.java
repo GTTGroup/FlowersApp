@@ -25,6 +25,7 @@ public class OrderActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+        setTextTitle(getString(R.string.title_user_order));
         tabStrip = (PagerSlidingTabStrip) findViewById(R.id.tab_title);
         viewPager = (ViewPager) findViewById(R.id.pager_container);
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
