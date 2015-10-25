@@ -210,7 +210,7 @@
                 android:id="@+id/rl_personal_order"
                 android:layout_width="match_parent"
                 android:layout_height="41dp"
-                android:background="@color/white">
+                android:background="@drawable/bg_top">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -232,18 +232,12 @@
                     android:layout_marginRight="14dp"
                     android:background="@drawable/ic_right_arrow"/>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/F2F2F2"/>
-
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_sell_order"
                 android:layout_width="match_parent"
                 android:layout_height="41dp"
-                android:background="@color/white">
+                android:background="@drawable/bg_top">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -265,18 +259,12 @@
                     android:layout_marginRight="14dp"
                     android:background="@drawable/ic_right_arrow"/>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/F2F2F2"/>
-
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_buy"
                 android:layout_width="match_parent"
                 android:layout_height="41dp"
-                android:background="@color/white">
+                android:background="@drawable/bg_top">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -298,18 +286,12 @@
                     android:layout_marginRight="14dp"
                     android:background="@drawable/ic_right_arrow"/>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/F2F2F2"/>
-
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_order_return"
                 android:layout_width="match_parent"
                 android:layout_height="41dp"
-                android:background="@color/white">
+                android:background="@drawable/bg_top">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -331,18 +313,12 @@
                     android:layout_marginRight="14dp"
                     android:background="@drawable/ic_right_arrow"/>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/F2F2F2"/>
-
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_pay_money"
                 android:layout_width="match_parent"
                 android:layout_height="41dp"
-                android:background="@color/white">
+                android:background="@drawable/bg_top">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -364,18 +340,12 @@
                     android:layout_marginRight="14dp"
                     android:background="@drawable/ic_right_arrow"/>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/F2F2F2"/>
-
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_message_center"
                 android:layout_width="match_parent"
                 android:layout_height="41dp"
-                android:background="@color/white">
+                android:background="@drawable/bg_top">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -396,12 +366,6 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="14dp"
                     android:background="@drawable/ic_right_arrow"/>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/B2B2B2"/>
 
             </RelativeLayout>
             <Button

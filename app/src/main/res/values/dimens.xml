@@ -12,4 +12,5 @@
     <dimen name="goods_order_item_header">41dp</dimen>
     <dimen name="goods_order_item_footer">59dp</dimen>
     <dimen name="goods_order_normal_height">110dp</dimen>
+    <dimen name="dialog_padding">25dp</dimen>
 </resources>

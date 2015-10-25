@@ -2,7 +2,7 @@ package com.do1.flowersapp.context;
 
 import android.app.Application;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
+import com.do1.flowersapp.config.FrescoImageConfig;
 
 /**
  * Created by gufeng

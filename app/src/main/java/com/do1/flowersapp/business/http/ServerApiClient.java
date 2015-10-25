@@ -3,6 +3,7 @@ package com.do1.flowersapp.business.http;
 import android.content.Context;
 import android.util.Log;
 
+import com.do1.flowersapp.constants.ServerConstant;
 import com.do1.flowersapp.tools.SecurityDes3Util;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
@@ -26,6 +27,8 @@ public class ServerApiClient {
 
     //首页广告
     private static final String APIURL_INDEXADACTION = "/indexAdAction!indexAd.action";
+    //首页展柜
+    private static final String APIURL_INDEXDISPLAYACTION = "/indexDisplayAction!displayInfo.action";
     //商家详情
     private static final String APIURL_SHOP = "/shopAction!shopDtl.action";
     //商家所有商品分页数据(包含新品、商铺商品搜索)
@@ -54,6 +57,18 @@ public class ServerApiClient {
     private static final String APIURL_GOODSSUBTYPEBYSHOP = "/shopAction!goodsSubTypeByShop.action";
     //商家子分类对应商品
     private static final String APIURL_GOODSINFOBYSUBTYPE = "/goodsAction!goodsInfoBySubType.action";
+    //用户登录
+    private static final String APIURL_USERLOGIN = "/memberAction!login.action";
+    //用户注册
+    private static final String APIURL_USERREGISTER = "/memberAction!register.action";
+    //获取用户基础信息
+    private static final String APIURL_USERINFO = "/memberAction!userinfo.action";
+    //获取用户支付信息
+    private static final String APIURL_USERPAYINFO = "/memberAction!getUserPayInfo.action";
+    //查询用户收货地址
+    private static final String APIURL_USERADDRESSLIST = "/memberAction!searchAddr.action";
+    //新增用户收货地址
+    private static final String APIURL_ADDUSERADDRESS = "/memberAction!addAddr.action";
 
 
     private AsyncHttpClient asyncHttpClient;
@@ -133,7 +148,7 @@ public class ServerApiClient {
     public void getHomeAdList(Context context,String tag,ServerApiClientCallback callback) {
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_INDEXADACTION;
         Map<String,Object> params = new HashMap<>();
-        params.put("adType",1);
+        params.put("adType", 1);
         postSecurity(context, params, url, tag, true, callback);
     }
 
@@ -221,5 +236,90 @@ public class ServerApiClient {
         postSecurity(context, params, url, tag, true, callback);
     }
 
+    /**
+     * 首页展柜
+     */
+    public void getHomeShop(Context context,String tag,String pageNum,String displayType,ServerApiClientCallback callback) {
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_INDEXDISPLAYACTION;
+        Map<String, Object> params = new HashMap<>();
+        params.put("pageNum", pageNum);
+        params.put("pageIndex", "1");
+        params.put("displayType", displayType);
+        params.put("orgId", "0001");
+        postSecurity(context, params, url, tag, true, callback);
+    }
+
+    /**
+     * 用户登录
+     */
+    public void login(Context context,String tag,String userAccount,String password,ServerApiClientCallback callback) {
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_USERLOGIN;
+        Map<String, Object> params = new HashMap<>();
+        params.put("userName", userAccount);
+        params.put("userPwd", password);
+        postSecurity(context, params, url, tag, true, callback);
+    }
+
+    /**
+     * 用户注册
+     */
+    public void register(Context context,String tag,String userAccount,String password,String userType,String nickName,String mobile,String address,ServerApiClientCallback callback) {
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_USERREGISTER;
+        Map<String, Object> params = new HashMap<>();
+        params.put("userName", userAccount);
+        params.put("userPwd", password);
+        params.put("userType", userType);
+        params.put("nickName",nickName);
+        params.put("mobile", mobile);
+        params.put("addr", address);
+        postSecurity(context, params, url, tag, true, callback);
+    }
+
+    /**
+     * 获取用户基础信息
+     */
+    public void getUserInfo(Context context,String tag,String userId,ServerApiClientCallback callback) {
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_USERINFO;
+        Map<String, Object> params = new HashMap<>();
+        params.put("userId", userId);
+        postSecurity(context, params, url, tag, true, callback);
+    }
+
+    /**
+     * 获取用户支付信息
+     */
+    public void getUserPayInfo(Context context,String tag,String userId,ServerApiClientCallback callback) {
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_USERPAYINFO;
+        Map<String, Object> params = new HashMap<>();
+        params.put("userId", userId);
+        postSecurity(context, params, url, tag, true, callback);
+    }
+
+    /**
+     * 查询用户收货地址
+     */
+    public void getUserAddressList(Context context,String tag,String memberId,ServerApiClientCallback callback) {
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_USERADDRESSLIST;
+        Map<String, Object> params = new HashMap<>();
+        params.put("memberId", memberId);
+        postSecurity(context, params, url, tag, true, callback);
+    }
+
+    /**
+     * 新增用户收货地址
+     */
+    public void addUserAddress(Context context,String tag,String memberId,String realName,String mobile,String postCode,String areaAddr,String roadAddr,String isDefault,ServerApiClientCallback callback) {
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_ADDUSERADDRESS;
+        Map<String, Object> params = new HashMap<>();
+        params.put("memberId", memberId);
+        params.put("realname", realName);
+        params.put("mobile", mobile);
+        params.put("postcode", postCode);
+        params.put("areaAddr", areaAddr);
+        params.put("roadAddr", roadAddr);
+        params.put("isDefault", isDefault);
+        postSecurity(context, params, url, tag, true, callback);
+
+    }
 
 }

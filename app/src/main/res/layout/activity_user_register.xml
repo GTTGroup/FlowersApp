@@ -70,6 +70,7 @@
                 android:textColorHint="@color/DADADA"
                 android:textColor="@color/color_666666"
                 android:textSize="14sp"
+                android:inputType="textPassword"
                 android:singleLine="true"
                 android:gravity="center_vertical"
                 android:hint="@string/hint_input_user_password"
@@ -102,6 +103,7 @@
                 android:textColor="@color/color_666666"
                 android:textSize="14sp"
                 android:singleLine="true"
+                android:inputType="textPassword"
                 android:gravity="center_vertical"
                 android:hint="@string/hint_input_user_confirm_password"
                 android:background="@drawable/bg_top"/>
@@ -163,6 +165,7 @@
                 android:textColorHint="@color/DADADA"
                 android:textColor="@color/color_666666"
                 android:textSize="14sp"
+                android:inputType="number"
                 android:singleLine="true"
                 android:gravity="center_vertical"
                 android:hint="@string/hint_input_user_mobile"
@@ -290,7 +293,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_comfirm"
+        android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

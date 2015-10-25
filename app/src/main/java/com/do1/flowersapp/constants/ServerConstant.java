@@ -1,4 +1,4 @@
-package com.do1.flowersapp.business.http;
+package com.do1.flowersapp.constants;
 
 /**
  * Created by gufeng

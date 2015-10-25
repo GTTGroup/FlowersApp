@@ -8,6 +8,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,12 +26,15 @@ import com.do1.flowersapp.activity.SellerDetailActivity;
 import com.do1.flowersapp.business.http.CommonResp;
 import com.do1.flowersapp.business.http.ServerApiClient;
 import com.do1.flowersapp.business.http.ServerApiClientCallback;
+import com.do1.flowersapp.constants.ServerConstant;
+import com.do1.flowersapp.business.model.HomeAd;
 import com.do1.flowersapp.business.model.HomeShop;
 import com.do1.flowersapp.common.RecyclerArrayAdapter;
 import com.do1.flowersapp.context.ModuleFragment;
 import com.do1.flowersapp.tools.UITools;
 import com.do1.flowersapp.widget.CirclePageIndicator;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
@@ -47,34 +51,47 @@ import cz.msebera.android.httpclient.Header;
  */
 public class HomeFragment extends ModuleFragment {
 
-    private EditText inputCommodityName;
-    private RecyclerView recyclerView;
-    private ViewPager viewPager;
+    @Bind(R.id.input_commodity_name) EditText inputCommodityName;
+    @Bind(R.id.recycler_content) RecyclerView recyclerView;
+    @Bind(R.id.btn_message) ImageView mTopMessage;
+
+    private ShopRecyclerAdapter adapter;
 
     private List<HomeShop> shopList;
-    @Bind(R.id.btn_message)
-    ImageView mTopMessage;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        shopList = new ArrayList<>();
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, null);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
         return view;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        inputCommodityName = (EditText) view.findViewById(R.id.input_commodity_name);
         inputCommodityName.setOnEditorActionListener(onEditorActionListener);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_content);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         createAdapter();
+
+        //首页轮播广告
         ServerApiClient.getInstance().getHomeAdList(getActivity(), getClass().getName(), new ServerApiClientCallback() {
             @Override
             public void onSuccess(CommonResp resp) {
-
+                HomeAd homeAd = new Gson().fromJson(resp.getData(), HomeAd.class);
+                Log.i("tag","size:" + homeAd.getList().size());
+                if (null != homeAd && homeAd.getList().size() > 0) {
+                    adapter = new ShopRecyclerAdapter(getActivity());
+                    adapter.setAdList(homeAd.getList());
+                    recyclerView.setAdapter(adapter);
+                    adapter.addAll(shopList);
+                }
             }
 
             @Override
@@ -86,43 +103,28 @@ public class HomeFragment extends ModuleFragment {
             public void onFail(String serverRespCode, String severRespFail, JsonElement responseString) {
             }
         });
-        mTopMessage.setOnClickListener(new View.OnClickListener() {
+
+        //首页店铺
+        ServerApiClient.getInstance().getHomeShop(getActivity(), getClass().getName(),"5", "1", new ServerApiClientCallback() {
             @Override
-            public void onClick(View v) {
-                UITools.intent(getActivity(),SellerDetailActivity.class);
+            public void onSuccess(CommonResp resp) {
+
+            }
+
+            @Override
+            public void onFail(String serverRespCode, String severRespFail, JsonElement responseString) {
+
+            }
+
+            @Override
+            public void onError(int statCode, Header[] headers, String responseString) {
+
             }
         });
     }
 
     private void createAdapter() {
-
-        shopList = new ArrayList<>();
-
-        HomeShop homeShop = new HomeShop();
-        homeShop.shopLogoResId = R.drawable.img_shop_logo_celebrity;
-        homeShop.shopSlogan = getString(R.string.text_home_master_shop_slogan);
-        homeShop.shopType = 0;
-        shopList.add(homeShop);
-
-        HomeShop homeShop1 = new HomeShop();
-        homeShop1.shopLogoResId = R.drawable.img_shop_logo_gifts;
-        homeShop1.shopSlogan = getString(R.string.text_home_gifts_shop_slogan);
-        homeShop1.shopType = 1;
-        shopList.add(homeShop1);
-
-        HomeShop homeShop2 = new HomeShop();
-        homeShop2.shopLogoResId = R.drawable.img_shop_logo_master;
-        homeShop2.shopSlogan = getString(R.string.text_home_celebrity_shop_slogan);
-        homeShop2.shopType = 2;
-        shopList.add(homeShop2);
-
-        List<String> logoList = new ArrayList<>();
-        logoList.add("http://pic7.nipic.com/20100424/4271569_235714000888_2.jpg");
-        logoList.add("http://pic14.nipic.com/20110603/6956730_144355861000_2.jpg");
-        logoList.add("http://img5.imgtn.bdimg.com/it/u=815496641,3816560332&fm=21&gp=0.jpg");
-
-        ShopRecyclerAdapter adapter = new ShopRecyclerAdapter(getActivity());
-        adapter.setLogoList(logoList);
+        adapter = new ShopRecyclerAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         adapter.addAll(shopList);
     }
@@ -143,18 +145,18 @@ public class HomeFragment extends ModuleFragment {
         private final int TYPE_ITEM = 1;
 
         private Context context;
-        private List<String> logoList;
+        private List<HomeAd.Ad> adList;
 
         public ShopRecyclerAdapter(Context context) {
             super();
             this.context = context;
-            logoList = new ArrayList<>();
+            adList = new ArrayList<>();
         }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             if (viewType == TYPE_HEAD)
-                return new HeaderViewHolder(LayoutInflater.from(context).inflate(R.layout.view_home_header,parent,false),logoList);
+                return new HeaderViewHolder(LayoutInflater.from(context).inflate(R.layout.view_home_header,parent,false),adList);
             return new ItemViewHolder(LayoutInflater.from(context).inflate(R.layout.recycler_item_home,parent,false));
         }
 
@@ -194,8 +196,8 @@ public class HomeFragment extends ModuleFragment {
             return getCount()+1;
         }
 
-        public void setLogoList(List<String> logoList) {
-            this.logoList = logoList;
+        public void setAdList(List<HomeAd.Ad> adList) {
+            this.adList = adList;
         }
     }
 
@@ -203,20 +205,19 @@ public class HomeFragment extends ModuleFragment {
 
         private ViewPager viewPager;
         private CirclePageIndicator indicator;
-        private List<String> logoList;
 
         public HeaderViewHolder(View itemView) {
             super(itemView);
         }
 
-        public HeaderViewHolder(View itemView, final List<String> logoList) {
+        public HeaderViewHolder(View itemView, final List<HomeAd.Ad> adList) {
             super(itemView);
             viewPager = (ViewPager) itemView.findViewById(R.id.pager_content);
             indicator = (CirclePageIndicator) itemView.findViewById(R.id.indicator_guide);
             viewPager.setAdapter(new PagerAdapter() {
                 @Override
                 public int getCount() {
-                    return logoList.size();
+                    return adList.size();
                 }
 
                 @Override
@@ -233,15 +234,14 @@ public class HomeFragment extends ModuleFragment {
                 public Object instantiateItem(ViewGroup container, int position) {
                     SimpleDraweeView imageView = new SimpleDraweeView(getActivity());
                     imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                    String logo = logoList.get(position);
-                    imageView.setImageURI(Uri.parse(logo));
-                    RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
+                    HomeAd.Ad ad = adList.get(position);
+                    imageView.setImageURI(Uri.parse(ServerConstant.API_URL + ServerConstant.API_URL_PATH + ad.getImgPath()));
+                    RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
                     container.addView(imageView, params);
                     return imageView;
                 }
             });
             indicator.setViewPager(viewPager);
-            this.logoList = logoList;
         }
     }
 

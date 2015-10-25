@@ -14,16 +14,23 @@
         android:icon="@mipmap/ic_launcher"
         android:theme="@style/AppTheme">
 
-        <activity
-            android:name=".activity.MainActivity"
+        <!--登录-->
+        <activity android:name=".activity.UserLoginActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
             android:theme="@style/Activitytheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <!--首页-->
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"
+            android:theme="@style/Activitytheme">
         </activity>
         <!--用户收藏列表-->
         <activity android:name=".activity.UserCollectActivity"
@@ -92,6 +99,22 @@
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
                   android:theme="@style/Activitytheme"/>
+        <!--个人信息-->
+        <activity android:name=".activity.UserPersonalActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:theme="@style/Activitytheme"/>
+        <!--系统设置-->
+        <activity android:name=".activity.SettingActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:theme="@style/Activitytheme"/>
+        <!--忘记密码-->
+        <activity android:name=".activity.UserForgetPasswordActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:theme="@style/Activitytheme"/>
+
     </application>
 
 </manifest>

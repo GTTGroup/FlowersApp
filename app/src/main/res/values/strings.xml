@@ -1,6 +1,8 @@
 <resources>
 
     <string name="app_name">我要花</string>
+    <string name="canncel">取消</string>
+    <string name="confirm">确定</string>
 
     <string name="tab_home">首页</string>
     <string name="tab_category">分类</string>
@@ -15,6 +17,9 @@
     <string name="title_florists">花艺师详情</string>
     <string name="title_user_address_manage">管理收货地址</string>
     <string name="title_add_user_address">新增收货地址</string>
+    <string name="title_personalinfo">个人信息</string>
+    <string name="title_setting">系统设置</string>
+    <string name="title_forgetpassword">忘记密码</string>
 
     <string name="hint_input_commodity_name">请输入商品名称</string>
     <string name="hint_input_receve_name">请输入收货人姓名</string>
@@ -47,6 +52,7 @@
     <string name="btn_logout">退出账号</string>
     <string name="btn_comfirm">确认</string>
     <string name="btn_register">注册</string>
+    <string name="btn_login">登录</string>
     <string name="rb_user">终端用户</string>
     <string name="rb_shop">花店</string>
     <string name="rb_wholesaler">批发商</string>

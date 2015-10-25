@@ -12,10 +12,13 @@ import android.widget.RelativeLayout;
 import com.do1.flowersapp.R;
 import com.do1.flowersapp.activity.NeedPayActivity;
 import com.do1.flowersapp.activity.OrderActivity;
+import com.do1.flowersapp.activity.PersonalActivity;
+import com.do1.flowersapp.activity.SettingActivity;
 import com.do1.flowersapp.activity.UserAddressManageActivity;
 import com.do1.flowersapp.activity.UserCollectActivity;
 import com.do1.flowersapp.context.ModuleFragment;
 import com.do1.flowersapp.tools.UITools;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 /**
  * Created by gufeng
@@ -29,6 +32,7 @@ public class PersonalFragment extends ModuleFragment implements View.OnClickList
     private LinearLayout llUserOrder;
     private RelativeLayout rlPayMoney;
     private ImageView btnSetting;
+    private SimpleDraweeView draweeView;
 
     @Nullable
     @Override
@@ -39,6 +43,8 @@ public class PersonalFragment extends ModuleFragment implements View.OnClickList
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        draweeView = (SimpleDraweeView) view.findViewById(R.id.drawee_avator);
+        draweeView.setOnClickListener(this);
         llCollectCommodity = (LinearLayout) view.findViewById(R.id.ll_collect_commodity);
         llCollectCommodity.setOnClickListener(this);
         llCollectShop = (LinearLayout) view.findViewById(R.id.ll_collect_shop);
@@ -58,9 +64,11 @@ public class PersonalFragment extends ModuleFragment implements View.OnClickList
         } else if(v == llUserOrder) {
             UITools.intent(getActivity(), OrderActivity.class);
         } else if(v == btnSetting) {
-            UITools.intent(getActivity(), UserAddressManageActivity.class);
+            UITools.intent(getActivity(), SettingActivity.class);
         } else if(v == rlPayMoney) {
             UITools.intent(getActivity(), NeedPayActivity.class);
+        } else if(v == draweeView) {
+            UITools.intent(getActivity(), PersonalActivity.class);
         }
     }
 }

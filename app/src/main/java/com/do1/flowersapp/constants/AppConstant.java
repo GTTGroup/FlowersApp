@@ -1,4 +1,4 @@
-package com.do1.flowersapp.context;
+package com.do1.flowersapp.constants;
 
 import android.os.Environment;
 

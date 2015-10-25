@@ -10,7 +10,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.do1.flowersapp.context;
+package com.do1.flowersapp.constants;
 
 import com.facebook.common.util.ByteConstants;
 

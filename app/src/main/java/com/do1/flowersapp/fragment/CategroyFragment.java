@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -31,6 +32,8 @@ import com.loopj.android.http.TextHttpResponseHandler;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
 /**
@@ -40,8 +43,8 @@ import cz.msebera.android.httpclient.Header;
  */
 public class CategroyFragment extends ModuleFragment {
 
-    private RecyclerView recyclerCategory;
-    private RecyclerView recyclerContent;
+    @Bind(R.id.recycler_category) RecyclerView recyclerCategory;
+    @Bind(R.id.ll_category) LinearLayout llCategoryItem;
 
     private ListRecyclerAdapter adapter;
 
@@ -62,11 +65,10 @@ public class CategroyFragment extends ModuleFragment {
             public void onItemClick(View view, int position) {
                 selectedCategoryPosition = position;
                 adapter.setSelectedPosition(selectedCategoryPosition);
+                llCategoryItem.removeAllViews();
                 getSubCategory(adapter.getItem(selectedCategoryPosition).getId());
             }
         }));
-        recyclerContent = (RecyclerView) view.findViewById(R.id.recycler_content);
-        recyclerContent.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         ServerApiClient.getInstance().getTypeList(getActivity(), getClass().getName(), new ServerApiClientCallback() {
             @Override
             public void onSuccess(CommonResp resp) {
@@ -91,7 +93,9 @@ public class CategroyFragment extends ModuleFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_category,null);
+        View view = inflater.inflate(R.layout.fragment_category, null);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     private void createListAdapter(List<CategoryList.Category> categoryList) {
@@ -103,11 +107,46 @@ public class CategroyFragment extends ModuleFragment {
         getSubCategory(categoryList.get(selectedCategoryPosition).getId());
     }
 
-    private void createCatrgoryAdapter(List<CategoryItem.Category> items) {
+    private void addCategoryItemView(String title,List<CategoryItem.Category> categoryList) {
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.recycler_item_category_item,null);
+        TextView textTitle = (TextView) view.findViewById(R.id.text_category_item);
+        FlowLayout flowCategory = (FlowLayout) view.findViewById(R.id.layout_category_item);
+        llCategoryItem.addView(view);
+        textTitle.setText(title);
+        int deviceWidth = DeviceInfo.getDeviceWidth(getActivity());
+        int listRecyclerViewWidth = getResources().getDimensionPixelSize(R.dimen.category_recyclerview_list_width);
+        int radioButtonHeight = getResources().getDimensionPixelSize(R.dimen.category_item_height);
+        int nButtonWidth = (deviceWidth-listRecyclerViewWidth-(flowCategory.getSelfHorSpacing()*3) - flowCategory.getPaddingLeft() - flowCategory.getPaddingRight()) / 4;
+        for (final CategoryItem.Category item : categoryList) {
+            final RadioButton rbTag = (RadioButton) LayoutInflater.from(getActivity()).inflate(R.layout.view_category_item, null);
+            rbTag.setLayoutParams(new FlowLayout.LayoutParams(nButtonWidth, radioButtonHeight));
+            rbTag.setText(item.getTypeName());
+            rbTag.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ServerApiClient.getInstance().getSubTypeList(getActivity(), getClass().getName(), item.getId(), new ServerApiClientCallback() {
+                        @Override
+                        public void onSuccess(CommonResp resp) {
+                            CategoryItem categoryList = new Gson().fromJson(resp.getData(), CategoryItem.class);
+                            if (null != categoryList && categoryList.getList().size() > 0) {
+                                addCategoryItemView("种类",categoryList.getList());
+                            }
+                        }
 
-        ItemRecyclerAdapter adapter = new ItemRecyclerAdapter(getActivity());
-        adapter.addAll(items);
-        recyclerContent.setAdapter(adapter);
+                        @Override
+                        public void onFail(String serverRespCode, String severRespFail, JsonElement responseString) {
+
+                        }
+
+                        @Override
+                        public void onError(int statCode, Header[] headers, String responseString) {
+
+                        }
+                    });
+                }
+            });
+            flowCategory.addView(rbTag);
+        }
     }
 
     private void getSubCategory(String parentId) {
@@ -116,7 +155,7 @@ public class CategroyFragment extends ModuleFragment {
             public void onSuccess(CommonResp resp) {
                 CategoryItem categoryList = new Gson().fromJson(resp.getData(), CategoryItem.class);
                 if (null != categoryList && categoryList.getList().size() > 0) {
-//                    createCatrgoryAdapter(categoryList.getList());
+                    addCategoryItemView("分类",categoryList.getList());
                 }
             }
 
@@ -130,45 +169,6 @@ public class CategroyFragment extends ModuleFragment {
 
             }
         });
-    }
-
-    class ItemRecyclerAdapter extends RecyclerArrayAdapter<CategoryItem.Category,CategoryViewHolder> {
-
-        private Context context;
-        private int deviceWidth;
-        private int listRecyclerViewWidth;
-        private int radioButtonHeight;
-
-        public ItemRecyclerAdapter(Context ctx) {
-            this.context = ctx;
-            deviceWidth = DeviceInfo.getDeviceWidth(context);
-            listRecyclerViewWidth = context.getResources().getDimensionPixelSize(R.dimen.category_recyclerview_list_width);
-            radioButtonHeight = context.getResources().getDimensionPixelSize(R.dimen.category_item_height);
-        }
-
-        @Override
-        public CategoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new CategoryViewHolder(LayoutInflater.from(getActivity()).inflate(R.layout.recycler_item_category_item,null));
-        }
-
-        @Override
-        public void onBindViewHolder(CategoryViewHolder holder, int position) {
-            CategoryItem.Category item = getItem(position);
-//            holder.textTitle.setText(item.detailTitle);
-//            int nButtonWidth = (deviceWidth-listRecyclerViewWidth-(holder.flowCategory.getSelfHorSpacing()*3) - holder.flowCategory.getPaddingLeft() - holder.flowCategory.getPaddingRight()) / 4;
-//            for (final String tag : item.categoryItems) {
-//                final RadioButton rbTag = (RadioButton) LayoutInflater.from(getActivity()).inflate(R.layout.view_category_item, null);
-//                rbTag.setLayoutParams(new FlowLayout.LayoutParams(nButtonWidth, radioButtonHeight));
-//                rbTag.setText(tag);
-//                rbTag.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//
-//                    }
-//                });
-//                holder.flowCategory.addView(rbTag);
-//            }
-        }
     }
 
     class ListRecyclerAdapter extends RecyclerArrayAdapter<CategoryList.Category,ListViewHolder> {
@@ -210,18 +210,6 @@ public class CategroyFragment extends ModuleFragment {
         public ListViewHolder(View itemView) {
             super(itemView);
             textCategory = (TextView) itemView.findViewById(R.id.text_category);
-        }
-    }
-
-    class CategoryViewHolder extends RecyclerView.ViewHolder {
-
-        public TextView textTitle;
-        public FlowLayout flowCategory;
-
-        public CategoryViewHolder(View itemView) {
-            super(itemView);
-            textTitle = (TextView) itemView.findViewById(R.id.text_category_item);
-            flowCategory = (FlowLayout) itemView.findViewById(R.id.layout_category_item);
         }
     }
 }

@@ -30,4 +30,10 @@
         <item name="android:background">@drawable/bg_selector_category_item</item>
     </style>
 
+    <style name="dialog_tran" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
 </resources>
