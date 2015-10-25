@@ -85,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
                         android:textSize="16sp"
-                        android:text="测试用户"
+                        android:text="普通用户"
                         android:gravity="center_vertical"
                         android:drawablePadding="8dp"
                         android:drawableRight="@drawable/ic_men"/>

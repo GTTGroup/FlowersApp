@@ -8,17 +8,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.do1.flowersapp.R;
 import com.do1.flowersapp.activity.NeedPayActivity;
 import com.do1.flowersapp.activity.OrderActivity;
-import com.do1.flowersapp.activity.PersonalActivity;
+import com.do1.flowersapp.activity.UserPersonalActivity;
 import com.do1.flowersapp.activity.SettingActivity;
 import com.do1.flowersapp.activity.UserAddressManageActivity;
 import com.do1.flowersapp.activity.UserCollectActivity;
+import com.do1.flowersapp.config.UserConfig;
 import com.do1.flowersapp.context.ModuleFragment;
 import com.do1.flowersapp.tools.UITools;
 import com.facebook.drawee.view.SimpleDraweeView;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by gufeng
@@ -27,34 +32,39 @@ import com.facebook.drawee.view.SimpleDraweeView;
  */
 public class PersonalFragment extends ModuleFragment implements View.OnClickListener {
 
-    private LinearLayout llCollectCommodity;
-    private LinearLayout llCollectShop;
-    private LinearLayout llUserOrder;
-    private RelativeLayout rlPayMoney;
-    private ImageView btnSetting;
-    private SimpleDraweeView draweeView;
+    @Bind(R.id.ll_collect_commodity)
+    LinearLayout llCollectCommodity;
+    @Bind(R.id.ll_collect_shop)
+    LinearLayout llCollectShop;
+    @Bind(R.id.ll_user_order)
+    LinearLayout llUserOrder;
+    @Bind(R.id.rl_pay_money)
+    RelativeLayout rlPayMoney;
+    @Bind(R.id.btn_setting)
+    ImageView btnSetting;
+    @Bind(R.id.drawee_avator)
+    SimpleDraweeView draweeView;
+    @Bind(R.id.text_user_name)
+    TextView textUserName;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_personal,null);
+        View view = inflater.inflate(R.layout.fragment_personal, null);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        draweeView = (SimpleDraweeView) view.findViewById(R.id.drawee_avator);
         draweeView.setOnClickListener(this);
-        llCollectCommodity = (LinearLayout) view.findViewById(R.id.ll_collect_commodity);
         llCollectCommodity.setOnClickListener(this);
-        llCollectShop = (LinearLayout) view.findViewById(R.id.ll_collect_shop);
         llCollectShop.setOnClickListener(this);
-        llUserOrder = (LinearLayout) view.findViewById(R.id.ll_user_order);
         llUserOrder.setOnClickListener(this);
-        btnSetting = (ImageView) view.findViewById(R.id.btn_setting);
         btnSetting.setOnClickListener(this);
-        rlPayMoney = (RelativeLayout) view.findViewById(R.id.rl_pay_money);
         rlPayMoney.setOnClickListener(this);
+        textUserName.setText(UserConfig.getUserNickName(getActivity()));
     }
 
     @Override
@@ -68,7 +78,7 @@ public class PersonalFragment extends ModuleFragment implements View.OnClickList
         } else if(v == rlPayMoney) {
             UITools.intent(getActivity(), NeedPayActivity.class);
         } else if(v == draweeView) {
-            UITools.intent(getActivity(), PersonalActivity.class);
+            UITools.intent(getActivity(), UserPersonalActivity.class);
         }
     }
 }

@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
-import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +16,23 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.do1.flowersapp.R;
+import com.do1.flowersapp.business.http.CommonResp;
+import com.do1.flowersapp.business.http.ServerApiClient;
+import com.do1.flowersapp.business.http.ServerApiClientCallback;
 import com.do1.flowersapp.business.model.UserAddress;
-import com.do1.flowersapp.business.model.UserOrder;
+import com.do1.flowersapp.config.UserConfig;
 import com.do1.flowersapp.context.BaseActivity;
+import com.do1.flowersapp.tools.UITools;
 import com.do1.flowersapp.tools.ViewHolder;
+import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by gufeng
@@ -32,8 +41,7 @@ import java.util.List;
  */
 public class UserAddressManageActivity extends BaseActivity {
 
-    private TextView btnAddUserAddress;
-    private SwipeMenuListView swipeMenuListView;
+    @Bind(R.id.list_content) SwipeMenuListView swipeMenuListView;
     private AddressAdapter mAdapter;
 
     @Override
@@ -41,8 +49,7 @@ public class UserAddressManageActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_address_manage);
         setTextTitle(getString(R.string.title_user_address_manage));
-        btnAddUserAddress = (TextView) findViewById(R.id.btn_add_user_address);
-        swipeMenuListView = (SwipeMenuListView) findViewById(R.id.list_content);
+        ButterKnife.bind(this);
         createAdapter();
         initData();
     }
@@ -66,12 +73,45 @@ public class UserAddressManageActivity extends BaseActivity {
         swipeMenuListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(int position, SwipeMenu swipeMenu, int index) {
+                ServerApiClient.getInstance().delUserAddress(UserAddressManageActivity.this, getClass().getName(), "817d742d-1b2c-4d96-bbe2-e0fc49311edc", new ServerApiClientCallback() {
+                    @Override
+                    public void onSuccess(CommonResp resp) {
+
+                    }
+
+                    @Override
+                    public void onFail(String serverRespCode, String severRespFail, JsonElement responseString) {
+
+                    }
+
+                    @Override
+                    public void onError(int statCode, Header[] headers, String responseString) {
+
+                    }
+                });
                 return false;
             }
         });
     }
 
     private void initData() {
+
+        ServerApiClient.getInstance().getUserAddressList(this, getClass().getName(), UserConfig.getUserMemberId(this), new ServerApiClientCallback() {
+            @Override
+            public void onSuccess(CommonResp resp) {
+
+            }
+
+            @Override
+            public void onFail(String serverRespCode, String severRespFail, JsonElement responseString) {
+
+            }
+
+            @Override
+            public void onError(int statCode, Header[] headers, String responseString) {
+
+            }
+        });
 
         List<UserAddress> list = new ArrayList<>();
 
@@ -88,6 +128,10 @@ public class UserAddressManageActivity extends BaseActivity {
         list.add(userAddress1);
 
         mAdapter.setData(list);
+    }
+
+    @OnClick(R.id.btn_add_user_address) void addUserAddress() {
+        UITools.intent(this,UserAddAddressActivity.class);
     }
 
     class AddressAdapter extends BaseAdapter {

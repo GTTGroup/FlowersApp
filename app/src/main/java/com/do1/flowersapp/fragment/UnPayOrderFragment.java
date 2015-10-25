@@ -7,7 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.do1.flowersapp.R;
+import com.do1.flowersapp.business.http.CommonResp;
+import com.do1.flowersapp.business.http.ServerApiClient;
+import com.do1.flowersapp.business.http.ServerApiClientCallback;
 import com.do1.flowersapp.context.ModuleFragment;
+import com.google.gson.JsonElement;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by gufeng
@@ -24,6 +30,22 @@ public class UnPayOrderFragment extends ModuleFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ServerApiClient.getInstance().getOrderList(getActivity(), getClass().getName(), "c01", "10", "1", new ServerApiClientCallback() {
+            @Override
+            public void onSuccess(CommonResp resp) {
+
+            }
+
+            @Override
+            public void onFail(String serverRespCode, String severRespFail, JsonElement responseString) {
+
+            }
+
+            @Override
+            public void onError(int statCode, Header[] headers, String responseString) {
+
+            }
+        });
     }
 
     @Nullable

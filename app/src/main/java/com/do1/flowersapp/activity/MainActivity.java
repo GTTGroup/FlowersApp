@@ -13,12 +13,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.do1.flowersapp.R;
+import com.do1.flowersapp.business.http.CommonResp;
+import com.do1.flowersapp.business.http.ServerApiClient;
+import com.do1.flowersapp.business.http.ServerApiClientCallback;
+import com.do1.flowersapp.config.UserConfig;
 import com.do1.flowersapp.context.BaseActivity;
 import com.do1.flowersapp.context.ModuleFragment;
 import com.do1.flowersapp.fragment.CategroyFragment;
 import com.do1.flowersapp.fragment.HomeFragment;
 import com.do1.flowersapp.fragment.PurchaseBillFragment;
 import com.do1.flowersapp.fragment.PersonalFragment;
+import com.google.gson.JsonElement;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by gufeng
@@ -97,6 +104,22 @@ public class MainActivity extends BaseActivity {
         } else {
             restoreFragment(savedInstanceState);
         }
+        ServerApiClient.getInstance().getUserInfo(this, getClass().getName(), UserConfig.getUserMemberId(this), new ServerApiClientCallback() {
+            @Override
+            public void onSuccess(CommonResp resp) {
+
+            }
+
+            @Override
+            public void onFail(String serverRespCode, String severRespFail, JsonElement responseString) {
+
+            }
+
+            @Override
+            public void onError(int statCode, Header[] headers, String responseString) {
+
+            }
+        });
     }
 
     private void initView() {

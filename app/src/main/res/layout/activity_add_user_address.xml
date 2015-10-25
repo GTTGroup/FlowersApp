@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="@color/color_666666"
-                android:text="姓            名"/>
+                android:text="姓              名"/>
 
             <EditText
                 android:id="@+id/input_user_name"
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="@color/color_666666"
-                android:text="电 话 号  码"/>
+                android:text="电  话  号  码"/>
 
             <EditText
                 android:id="@+id/input_mobile"
@@ -70,6 +70,7 @@
                 android:textColorHint="@color/DADADA"
                 android:textColor="@color/color_666666"
                 android:textSize="14sp"
+                android:inputType="number"
                 android:hint="@string/hint_input_receve_mobile"
                 android:background="@drawable/bg_top"/>
 
@@ -89,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="@color/color_666666"
-                android:text="省市区地址"/>
+                android:text="省 市 区 地址"/>
 
             <EditText
                 android:id="@+id/input_provinces"
@@ -118,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="@color/color_666666"
-                android:text="详 细 地  址"/>
+                android:text="详  细  地  址"/>
 
             <EditText
                 android:id="@+id/input_street"
@@ -130,6 +131,78 @@
                 android:textSize="14sp"
                 android:hint="@string/hint_input_receve_street"
                 android:background="@null"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_top"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/color_666666"
+                android:text="邮  政  编  码"/>
+
+            <EditText
+                android:id="@+id/input_postcode"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="15dp"
+                android:textColorHint="@color/DADADA"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp"
+                android:inputType="number"
+                android:hint="请输入邮政编码"
+                android:background="@null"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_top"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/color_666666"
+                android:text="是否设置为默认地址"/>
+
+            <TextView
+                android:id="@+id/text_default"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:drawableLeft="@drawable/btn_selector_register_user_type"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:textColor="@color/color_333333"
+                android:text="是"/>
+
+            <TextView
+                android:id="@+id/text_not_default"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:drawableLeft="@drawable/btn_selector_register_user_type"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:textColor="@color/color_333333"
+                android:text="否"/>
 
         </LinearLayout>
 

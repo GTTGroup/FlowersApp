@@ -54,7 +54,7 @@
             android:theme="@style/Activitytheme" />
         <!--店铺-->
         <!--新增用户收货地址-->
-        <activity android:name=".activity.AddUserAddressActivity"
+        <activity android:name=".activity.UserAddAddressActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
             android:theme="@style/Activitytheme" />

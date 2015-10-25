@@ -18,6 +18,7 @@ import com.do1.flowersapp.business.http.CommonResp;
 import com.do1.flowersapp.business.http.ServerApiClient;
 import com.do1.flowersapp.business.http.ServerApiClientCallback;
 import com.do1.flowersapp.business.model.UserInfo;
+import com.do1.flowersapp.config.UserConfig;
 import com.do1.flowersapp.context.ModuleFragment;
 import com.do1.flowersapp.tools.UITools;
 import com.do1.flowersapp.widget.NiftyProgressDialogBuilder;
@@ -55,7 +56,7 @@ public class DefaultLoginFragment extends ModuleFragment {
     }
 
     @OnClick(R.id.btn_login) void login() {
-        String userAccount = inputUserAccount.getText().toString();
+        final String userAccount = inputUserAccount.getText().toString();
         String userPassword = inputUserPassword.getText().toString();
         final NiftyProgressDialogBuilder progressDialogBuilder = new NiftyProgressDialogBuilder(getActivity());
         UITools.createNiftyProgressDialog(progressDialogBuilder,null,false);
@@ -63,6 +64,14 @@ public class DefaultLoginFragment extends ModuleFragment {
             @Override
             public void onSuccess(CommonResp resp) {
                 UserInfo userInfo = new Gson().fromJson(resp.getData(),UserInfo.class);
+                UserConfig.setUserEmail(getActivity(),userInfo.getUser().getEmail());
+                UserConfig.setUserName(getActivity(), userInfo.getUser().getUsername());
+                UserConfig.setUserMemberId(getActivity(), userInfo.getUser().getMemberId());
+                UserConfig.setUserMobile(getActivity(), userInfo.getUser().getMobile());
+                UserConfig.setUserNickName(getActivity(), userInfo.getUser().getNickname());
+                UserConfig.setUserAvator(getActivity(), userInfo.getUser().getHeadPic());
+                UserConfig.setUserAccount(getActivity(), userAccount);
+                UserConfig.setUserLoginState(getActivity(),true);
                 progressDialogBuilder.dismiss();
                 UITools.intent(getActivity(), MainActivity.class);
                 getActivity().finish();

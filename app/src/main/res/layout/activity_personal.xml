@@ -180,6 +180,7 @@
         android:background="@color/white">
 
         <RelativeLayout
+            android:id="@+id/rl_user_address"
             android:layout_width="match_parent"
             android:layout_height="43dp"
             android:layout_marginLeft="11dp"

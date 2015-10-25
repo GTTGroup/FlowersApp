@@ -5,6 +5,7 @@ public class SharedPreferencesConstants {
     public static final String USER_CONFIG_FILE = "userinfo";
 
     public static final String USER_LOGIN_STATE = "user_login";
+    public static final String USER_ACCOUNT = "user_account";
 	public static final String USER_MEMBER_ID = "user_memberid";
     public static final String USER_NICK_NAME = "user_nickname";
     public static final String USER_NAME = "user_name";

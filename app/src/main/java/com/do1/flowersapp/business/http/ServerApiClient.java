@@ -71,6 +71,12 @@ public class ServerApiClient {
     private static final String APIURL_USERADDRESSLIST = "/memberAction!searchAddr.action";
     //新增用户收货地址
     private static final String APIURL_ADDUSERADDRESS = "/memberAction!addAddr.action";
+    //删除用户收货地址
+    private static final String APIURL_DELUSERADDRESS = "/memberAction!delAddr.action";
+    //订单列表
+    private static final String APIURL_ORDERLIST = "/buycarAction!orderList.action";
+    //订单详情
+    private static final String APIURL_ORDERDETAIL = "/buycarAction!orderDetail.action";
 
 
     private AsyncHttpClient asyncHttpClient;
@@ -113,15 +119,17 @@ public class ServerApiClient {
     }
 
     private void post(Context context, final boolean ifCache,String url,String tag,RequestParams params, final ServerApiClientCallback callback) {
+        Log.d("ApiClient","params:" + params);
         asyncHttpClient.post(context, url, params, new TextHttpResponseHandler() {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                Log.d("ApiClient", "onFailure:" + statusCode + "--" + responseString);
                 callback.onError(statusCode, headers, responseString);
             }
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                Log.d("ApiClient", statusCode + "==" + responseString);
+                Log.d("ApiClient", "OnSuccess:" + statusCode + "--" + responseString);
                 if (statusCode == HttpURLConnection.HTTP_OK) {
                     Gson gson = new Gson();
                     CommonResp commonResp = gson.fromJson(responseString, CommonResp.class);
@@ -311,6 +319,16 @@ public class ServerApiClient {
     }
 
     /**
+     * 删除用户收货地址
+     */
+    public void delUserAddress(Context context,String tag,String id,ServerApiClientCallback callback) {
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_DELUSERADDRESS;
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        postSecurity(context, params, url, tag, true, callback);
+    }
+
+    /**
      * 新增用户收货地址
      */
     public void addUserAddress(Context context,String tag,String memberId,String realName,String mobile,String postCode,String areaAddr,String roadAddr,String isDefault,ServerApiClientCallback callback) {
@@ -324,8 +342,8 @@ public class ServerApiClient {
         params.put("roadAddr", roadAddr);
         params.put("isDefault", isDefault);
         postSecurity(context, params, url, tag, true, callback);
-
     }
+
     /**
      * 商品规格对应的属性
      * @param context
@@ -339,6 +357,18 @@ public class ServerApiClient {
         Map<String, Object> params = new HashMap<>();
         params.put("id",goodsId);
         params.put("skuIds",skuIds);
+        postSecurity(context, params, url, tag, true, callback);
+    }
+
+    /**
+     * 订单列表
+     */
+    public void getOrderList(Context context, String tag, String userId,String pageNum,String pageIndex, ServerApiClientCallback callback) {
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_ORDERLIST;
+        Map<String, Object> params = new HashMap<>();
+        params.put("pageNum",pageNum);
+        params.put("pageIndex",pageIndex);
+        params.put("userId",userId);
         postSecurity(context, params, url, tag, true, callback);
     }
 }
