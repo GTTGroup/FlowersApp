@@ -29,7 +29,7 @@ public abstract class BaseRecyclerViewAdapter extends RecyclerView.Adapter<Recyc
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (position == 0 && holder.getItemViewType() == TYPE_HEADER) {
             onBindHeaderView(holder, position);
-        } else if (position == getBasicItemCount() && holder.getItemViewType() == TYPE_FOOTER) {
+        } else if (position == getBasicItemCount()+(useHeader() ? 1 : 0) && holder.getItemViewType() == TYPE_FOOTER) {
             onBindFooterView(holder, position);
         } else {
             onBindBasicItemView(holder, position - (useHeader() ? 1 : 0));
@@ -53,7 +53,7 @@ public abstract class BaseRecyclerViewAdapter extends RecyclerView.Adapter<Recyc
         if (position == 0 && useHeader()) {
             return TYPE_HEADER;
         }
-        if (position == getBasicItemCount() && useFooter()) {
+        if (position == getBasicItemCount()+(useHeader() ? 1 : 0) && useFooter()) {
             return TYPE_FOOTER;
         }
         if (getBasicItemType(position) >= Integer.MAX_VALUE - TYPE_ADAPTER_OFFSET) {

@@ -62,6 +62,16 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
             android:theme="@style/Activitytheme" />
+        <!--应付款-->
+        <activity android:name=".activity.NeedPayActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:theme="@style/Activitytheme" />
+        <!--应付款明细-->
+        <activity android:name=".activity.NeedPayDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:theme="@style/Activitytheme" />
         <!-- 商家详情页-->
         <activity android:name=".activity.SellerDetailActivity"
                   android:screenOrientation="portrait"
@@ -69,6 +79,16 @@
                   android:theme="@style/Activitytheme"/>
         <!-- 异常退货页-->
         <activity android:name=".activity.OddReturnGoodActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+                  android:theme="@style/Activitytheme"/>
+        <!-- 一键下单 界面-->
+        <activity android:name=".activity.GoodsOrderActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+                  android:theme="@style/Activitytheme"/>
+        <!-- 确认订单 界面-->
+        <activity android:name=".activity.ConfirmOrderActivity"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
                   android:theme="@style/Activitytheme"/>

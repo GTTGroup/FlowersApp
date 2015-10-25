@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.do1.flowersapp.R;
+import com.do1.flowersapp.activity.NeedPayActivity;
 import com.do1.flowersapp.activity.OrderActivity;
 import com.do1.flowersapp.activity.UserAddressManageActivity;
 import com.do1.flowersapp.activity.UserCollectActivity;
@@ -25,6 +27,7 @@ public class PersonalFragment extends ModuleFragment implements View.OnClickList
     private LinearLayout llCollectCommodity;
     private LinearLayout llCollectShop;
     private LinearLayout llUserOrder;
+    private RelativeLayout rlPayMoney;
     private ImageView btnSetting;
 
     @Nullable
@@ -44,6 +47,8 @@ public class PersonalFragment extends ModuleFragment implements View.OnClickList
         llUserOrder.setOnClickListener(this);
         btnSetting = (ImageView) view.findViewById(R.id.btn_setting);
         btnSetting.setOnClickListener(this);
+        rlPayMoney = (RelativeLayout) view.findViewById(R.id.rl_pay_money);
+        rlPayMoney.setOnClickListener(this);
     }
 
     @Override
@@ -54,6 +59,8 @@ public class PersonalFragment extends ModuleFragment implements View.OnClickList
             UITools.intent(getActivity(), OrderActivity.class);
         } else if(v == btnSetting) {
             UITools.intent(getActivity(), UserAddressManageActivity.class);
+        } else if(v == rlPayMoney) {
+            UITools.intent(getActivity(), NeedPayActivity.class);
         }
     }
 }

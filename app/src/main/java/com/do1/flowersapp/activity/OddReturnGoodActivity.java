@@ -39,6 +39,10 @@ public class OddReturnGoodActivity extends BaseActivity implements ReturnGoodsLi
 
     @Bind(R.id.recycler_view)
     RecyclerView mRecylerView;
+    @Bind(R.id.text_choose)
+    TextView mTopChoose;
+    @Bind(R.id.top_title)
+    TextView mTopTitle;
 
     private String mReturnIllustrate;//退款说明
 
@@ -47,6 +51,10 @@ public class OddReturnGoodActivity extends BaseActivity implements ReturnGoodsLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_odd_return_good);
         ButterKnife.bind(this);
+
+        mTopChoose.setText("选择");
+        mTopTitle.setText("异常退货");
+
         mRecylerView.setLayoutManager(new LinearLayoutManager(this));
         mRecylerView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
