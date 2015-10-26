@@ -1,9 +1,11 @@
 package com.do1.flowersapp.tools;
+
+import android.util.Log;
+
 import java.security.Key;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Set;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKeyFactory;
@@ -66,12 +68,13 @@ public class SecurityDes3Util {
      * @param map
      * @return
      */
-    public static Map<String, String> decode(Map<String, Object> map) {
-        Map<String, String> securityMap = new HashMap<>();
+    public static LinkedHashMap<String, String> decode(LinkedHashMap<String, Object> map) {
+        LinkedHashMap<String, String> securityMap = new LinkedHashMap<>();
         Iterator<Map.Entry<String,Object>> iterator = map.entrySet().iterator();
         StringBuilder keys = new StringBuilder();
         while (iterator.hasNext()) {
             Map.Entry<String,Object> entry = iterator.next();
+            Log.e("decode-name:",entry.getKey());
             keys.append(entry.getValue());
             try {
                 securityMap.put(entry.getKey(),encode(entry.getValue().toString()));

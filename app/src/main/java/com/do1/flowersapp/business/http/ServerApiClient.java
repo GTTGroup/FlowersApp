@@ -13,8 +13,7 @@ import com.loopj.android.http.TextHttpResponseHandler;
 import org.json.JSONObject;
 
 import java.net.HttpURLConnection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedHashMap;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -108,11 +107,12 @@ public class ServerApiClient {
      * @param ifCache  是否缓存。缓存数据都通用在一个表中。存入接口返回的数据。后续在各业务模块中处理
      * @param callback 接口返回回调方法
      */
-    private void postSecurity(Context context,Map<String,Object> map,String url,String tag,boolean ifCache,ServerApiClientCallback callback) {
+    private void postSecurity(Context context,LinkedHashMap<String,Object> map,String url,String tag,boolean ifCache,ServerApiClientCallback callback) {
         RequestParams params = new RequestParams();
         if(null != map && map.size() > 0) {
-            Map<String,String> securityMap = SecurityDes3Util.decode(map);
+            LinkedHashMap<String,String> securityMap = SecurityDes3Util.decode(map);
             JSONObject jsonObject = new JSONObject(securityMap);
+            Log.e("post-requestJson:",jsonObject.toString());
             params.put("requestJson",jsonObject.toString());
         }
         post(context, ifCache, url, tag, params, callback);
@@ -157,7 +157,7 @@ public class ServerApiClient {
      */
     public void getHomeAdList(Context context,String tag,ServerApiClientCallback callback) {
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_INDEXADACTION;
-        Map<String,Object> params = new HashMap<>();
+        LinkedHashMap<String,Object> params = new LinkedHashMap<>();
         params.put("adType", 1);
         postSecurity(context, params, url, tag, true, callback);
     }
@@ -175,7 +175,7 @@ public class ServerApiClient {
      */
     public void getSubTypeList(Context context,String tag,String parentId,ServerApiClientCallback callback) {
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_SUBTYPELIST;
-        Map<String,Object> params = new HashMap<>();
+        LinkedHashMap<String,Object> params = new LinkedHashMap<>();
         params.put("parentId",parentId);
         postSecurity(context, params, url, tag, true, callback);
     }
@@ -185,7 +185,7 @@ public class ServerApiClient {
      */
     public void getGoodsTypeList(Context context,String tag,String goodsType,ServerApiClientCallback callback) {
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_GOODSLIST;
-        Map<String,Object> params = new HashMap<>();
+        LinkedHashMap<String,Object> params = new LinkedHashMap<>();
         params.put("goodsType",goodsType);
         postSecurity(context, params, url, tag, true, callback);
     }
@@ -199,7 +199,7 @@ public class ServerApiClient {
      */
     public void getSellerDetailMessage(Context context, String tag, String sellerId, ServerApiClientCallback callback){
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_SHOP;
-        Map<String,Object> params = new HashMap<>();
+        LinkedHashMap<String,Object> params = new LinkedHashMap<>();
         params.put("id",sellerId);
         postSecurity(context,params,url,tag,true,callback);
     }
@@ -217,17 +217,30 @@ public class ServerApiClient {
      */
     public void getSellerDetailList(Context context, String tag, String shopId,String pageNum,String pageIndex,String type,String keyword,ServerApiClientCallback callback){
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_SHOPGOODS;
-        Map<String,Object> params = new HashMap<>();
+        LinkedHashMap<String,Object> params = new LinkedHashMap<>();
         params.put("pageNum",pageNum);
         params.put("pageIndex",pageIndex);
         params.put("shopId",shopId);
         params.put("type",type);
         params.put("keyword","");
-//        params.put("shopId","s01");
 //        params.put("pageNum","10");
 //        params.put("pageIndex","1");
+//        params.put("shopId","s01");
 //        params.put("type","2");
 //        params.put("keyword","红");
+        postSecurity(context, params, url, tag, true, callback);
+    }
+
+    /**
+     * 商家商品总分类
+     * @param context
+     * @param tag
+     * @param shopId
+     */
+    public void getSellerAllList(Context context,String tag,String shopId,ServerApiClientCallback callback){
+        String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_GOODSTYPEBYSHOP;
+        LinkedHashMap<String,Object> params = new LinkedHashMap<>();
+        params.put("shopId",shopId);
         postSecurity(context, params, url, tag, true, callback);
     }
 
@@ -240,7 +253,7 @@ public class ServerApiClient {
      */
     public void getGoodsInfo(Context context, String tag, String goodsId, ServerApiClientCallback callback){
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_GOODS;
-        Map<String,Object> params = new HashMap<>();
+        LinkedHashMap<String,Object> params = new LinkedHashMap<>();
         params.put("id",goodsId);
         postSecurity(context,params,url,tag,true,callback);
     }
@@ -254,7 +267,7 @@ public class ServerApiClient {
      */
     public void getGoodsSkuList(Context context, String tag, String goodsId, ServerApiClientCallback callback) {
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_GOODS_SKULIST;
-        Map<String, Object> params = new HashMap<>();
+        LinkedHashMap<String, Object> params = new LinkedHashMap<>();
         params.put("id",goodsId);
         postSecurity(context, params, url, tag, true, callback);
     }
@@ -264,7 +277,7 @@ public class ServerApiClient {
      */
     public void getHomeShop(Context context,String tag,String pageNum,String displayType,ServerApiClientCallback callback) {
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_INDEXDISPLAYACTION;
-        Map<String, Object> params = new HashMap<>();
+        LinkedHashMap<String, Object> params = new LinkedHashMap<>();
         params.put("pageNum", pageNum);
         params.put("pageIndex", "1");
         params.put("displayType", displayType);
@@ -277,7 +290,7 @@ public class ServerApiClient {
      */
     public void login(Context context,String tag,String userAccount,String password,ServerApiClientCallback callback) {
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_USERLOGIN;
-        Map<String, Object> params = new HashMap<>();
+        LinkedHashMap<String, Object> params = new LinkedHashMap<>();
         params.put("userName", userAccount);
         params.put("userPwd", password);
         postSecurity(context, params, url, tag, true, callback);
@@ -288,7 +301,7 @@ public class ServerApiClient {
      */
     public void register(Context context,String tag,String userAccount,String password,String userType,String nickName,String mobile,String address,ServerApiClientCallback callback) {
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_USERREGISTER;
-        Map<String, Object> params = new HashMap<>();
+        LinkedHashMap<String, Object> params = new LinkedHashMap<>();
         params.put("userName", userAccount);
         params.put("userPwd", password);
         params.put("userType", userType);
@@ -303,7 +316,7 @@ public class ServerApiClient {
      */
     public void getUserInfo(Context context,String tag,String userId,ServerApiClientCallback callback) {
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_USERINFO;
-        Map<String, Object> params = new HashMap<>();
+        LinkedHashMap<String, Object> params = new LinkedHashMap<>();
         params.put("userId", userId);
         postSecurity(context, params, url, tag, true, callback);
     }
@@ -313,7 +326,7 @@ public class ServerApiClient {
      */
     public void getUserPayInfo(Context context,String tag,String userId,ServerApiClientCallback callback) {
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_USERPAYINFO;
-        Map<String, Object> params = new HashMap<>();
+        LinkedHashMap<String, Object> params = new LinkedHashMap<>();
         params.put("userId", userId);
         postSecurity(context, params, url, tag, true, callback);
     }
@@ -323,7 +336,7 @@ public class ServerApiClient {
      */
     public void getUserAddressList(Context context,String tag,String memberId,ServerApiClientCallback callback) {
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_USERADDRESSLIST;
-        Map<String, Object> params = new HashMap<>();
+        LinkedHashMap<String, Object> params = new LinkedHashMap<>();
         params.put("memberId", memberId);
         postSecurity(context, params, url, tag, true, callback);
     }
@@ -333,7 +346,7 @@ public class ServerApiClient {
      */
     public void delUserAddress(Context context,String tag,String id,ServerApiClientCallback callback) {
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_DELUSERADDRESS;
-        Map<String, Object> params = new HashMap<>();
+        LinkedHashMap<String, Object> params = new LinkedHashMap<>();
         params.put("id", id);
         postSecurity(context, params, url, tag, true, callback);
     }
@@ -343,7 +356,7 @@ public class ServerApiClient {
      */
     public void addUserAddress(Context context,String tag,String memberId,String realName,String mobile,String postCode,String areaAddr,String roadAddr,String isDefault,ServerApiClientCallback callback) {
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_ADDUSERADDRESS;
-        Map<String, Object> params = new HashMap<>();
+        LinkedHashMap<String, Object> params = new LinkedHashMap<>();
         params.put("memberId", memberId);
         params.put("realname", realName);
         params.put("mobile", mobile);
@@ -364,7 +377,7 @@ public class ServerApiClient {
      */
     public void getGoodsAttrbySku(Context context, String tag, String goodsId, String skuIds, ServerApiClientCallback callback) {
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_GOODS_ATTRBYSKU;
-        Map<String, Object> params = new HashMap<>();
+        LinkedHashMap<String, Object> params = new LinkedHashMap<>();
         params.put("id",goodsId);
         params.put("skuIds",skuIds);
         postSecurity(context, params, url, tag, true, callback);
@@ -375,7 +388,7 @@ public class ServerApiClient {
      */
     public void getOrderList(Context context, String tag, String userId,String pageNum,String pageIndex, ServerApiClientCallback callback) {
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_ORDERLIST;
-        Map<String, Object> params = new HashMap<>();
+        LinkedHashMap<String, Object> params = new LinkedHashMap<>();
         params.put("pageNum",pageNum);
         params.put("pageIndex",pageIndex);
         params.put("userId",userId);
