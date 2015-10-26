@@ -98,6 +98,7 @@ public class GoodsOrderItemAdapter extends BaseRecyclerViewAdapter {
 
     @Override
     public void onBindBasicItemView(RecyclerView.ViewHolder holder, final int position) {
+        Log.e("onBindBasicItemView", "" + data.flowers.size());
         final ItemViewHolder viewHolder = (ItemViewHolder) holder;
         final GoodsOrderItem.GoodsOrderSingle single = data.flowers.get(position);
         if(data.isStore) {//商品
@@ -120,11 +121,11 @@ public class GoodsOrderItemAdapter extends BaseRecyclerViewAdapter {
         viewHolder.layoutBottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               data.flowers.remove(position);
+                data.flowers.remove(position);
                 //通知该界面刷新
-               updateLayout();
-               notifyItemRemoved(position);
-               updateFooterView();
+                updateLayout();
+//                notifyItemRemoved(position + 1);
+                updateFooterView();
                 //通知外层界面刷新
                 notifyHomeUpdate(postionOuter);
                 Log.e("onHomeUpdate:", "移除店铺'" + data.storeName + "'中的" + single.counter + "朵 <" + single.flowerName + ">花");
@@ -208,6 +209,7 @@ public class GoodsOrderItemAdapter extends BaseRecyclerViewAdapter {
                             * mContext.getResources().getDimension(R.dimen.goods_order_normal_height))));
         }
         recyclerView.requestLayout();
+        recyclerView.getAdapter().notifyDataSetChanged();
     }
 
     class HeaderViewHolder extends RecyclerView.ViewHolder {
