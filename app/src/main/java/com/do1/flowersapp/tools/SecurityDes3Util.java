@@ -74,7 +74,6 @@ public class SecurityDes3Util {
         StringBuilder keys = new StringBuilder();
         while (iterator.hasNext()) {
             Map.Entry<String,Object> entry = iterator.next();
-            Log.e("decode-name:",entry.getKey());
             keys.append(entry.getValue());
             try {
                 securityMap.put(entry.getKey(),encode(entry.getValue().toString()));

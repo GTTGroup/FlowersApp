@@ -14,8 +14,8 @@
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/drawee_avator"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="11dp"
             android:layout_marginRight="20dp"
             android:layout_gravity="center_vertical"
@@ -54,11 +54,11 @@
 
         <ImageView
             android:id="@+id/btn_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="11dp"
-            android:layout_marginLeft="20dp"
-            android:background="@drawable/btn_message"/>
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/btn_selector_top_back"
+            android:scaleType="center"
+            android:src="@drawable/btn_message"/>
 
     </LinearLayout>
 

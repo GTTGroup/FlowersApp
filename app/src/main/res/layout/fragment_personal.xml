@@ -26,11 +26,12 @@
 
             <ImageView
                 android:id="@+id/btn_setting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
-                android:background="@drawable/btn_setting"
+                android:background="@drawable/btn_selector_top_back"
+                android:scaleType="center"
+                android:src="@drawable/btn_setting"
                 android:layout_alignParentRight="true" />
 
         </RelativeLayout>
@@ -75,8 +76,9 @@
                         android:id="@+id/drawee_avator"
                         android:layout_width="68dp"
                         android:layout_height="67dp"
-                        fresco:roundedCornerRadius="35dp"
                         fresco:placeholderImage="@drawable/img_user_avator"
+                        fresco:pressedStateOverlayImage="@drawable/bg_selector_drawee"
+                        fresco:roundAsCircle="true"
                         />
 
                     <TextView
@@ -210,7 +212,7 @@
                 android:id="@+id/rl_purchase_bill"
                 android:layout_width="match_parent"
                 android:layout_height="41dp"
-                android:background="@drawable/bg_top">
+                android:background="@drawable/bg_selector_common_layout">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -237,7 +239,7 @@
                 android:id="@+id/rl_sell_order"
                 android:layout_width="match_parent"
                 android:layout_height="41dp"
-                android:background="@drawable/bg_top">
+                android:background="@drawable/bg_selector_common_layout">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -264,7 +266,7 @@
                 android:id="@+id/rl_buy"
                 android:layout_width="match_parent"
                 android:layout_height="41dp"
-                android:background="@drawable/bg_top">
+                android:background="@drawable/bg_selector_common_layout">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -291,7 +293,7 @@
                 android:id="@+id/rl_order_return"
                 android:layout_width="match_parent"
                 android:layout_height="41dp"
-                android:background="@drawable/bg_top">
+                android:background="@drawable/bg_selector_common_layout">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -318,7 +320,7 @@
                 android:id="@+id/rl_pay_money"
                 android:layout_width="match_parent"
                 android:layout_height="41dp"
-                android:background="@drawable/bg_top">
+                android:background="@drawable/bg_selector_common_layout">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -345,7 +347,7 @@
                 android:id="@+id/rl_message_center"
                 android:layout_width="match_parent"
                 android:layout_height="41dp"
-                android:background="@drawable/bg_top">
+                android:background="@drawable/bg_selector_common_layout">
 
                 <TextView
                     android:layout_width="wrap_content"

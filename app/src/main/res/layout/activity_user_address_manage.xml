@@ -13,6 +13,7 @@
             android:id="@+id/btn_top_back"
             android:layout_width="50dp"
             android:layout_height="match_parent"
+            android:background="@drawable/btn_selector_top_back"
             android:scaleType="center"
             android:src="@drawable/btn_top_back"/>
 
@@ -28,11 +29,12 @@
 
         <TextView
             android:id="@+id/btn_add_user_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="11dp"
+            android:gravity="center"
+            android:background="@drawable/btn_selector_top_back"
             android:text="新增"
             android:textSize="16sp"
             android:textColor="@color/FC9902"

@@ -10,7 +10,8 @@
         android:layout_width="50dp"
         android:layout_height="match_parent"
         android:scaleType="center"
-        android:src="@drawable/btn_top_back"/>
+        android:src="@drawable/btn_top_back"
+        android:background="@drawable/btn_selector_top_back"/>
 
     <TextView
         android:id="@+id/text_top_title"

@@ -42,6 +42,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cz.msebera.android.httpclient.Header;
 
 /**
@@ -53,7 +54,6 @@ public class HomeFragment extends ModuleFragment {
 
     @Bind(R.id.input_commodity_name) EditText inputCommodityName;
     @Bind(R.id.recycler_content) RecyclerView recyclerView;
-    @Bind(R.id.btn_message) ImageView mTopMessage;
 
     private ShopRecyclerAdapter adapter;
 
@@ -85,7 +85,6 @@ public class HomeFragment extends ModuleFragment {
             @Override
             public void onSuccess(CommonResp resp) {
                 HomeAd homeAd = new Gson().fromJson(resp.getData(), HomeAd.class);
-                Log.i("tag","size:" + homeAd.getList().size());
                 if (null != homeAd && homeAd.getList().size() > 0) {
                     adapter = new ShopRecyclerAdapter(getActivity());
                     adapter.setAdList(homeAd.getList());
@@ -105,7 +104,7 @@ public class HomeFragment extends ModuleFragment {
         });
 
         //首页店铺
-        ServerApiClient.getInstance().getHomeShop(getActivity(), getClass().getName(),"5", "1", new ServerApiClientCallback() {
+        ServerApiClient.getInstance().getHomeShop(getActivity(), getClass().getName(), "5", "1", new ServerApiClientCallback() {
             @Override
             public void onSuccess(CommonResp resp) {
 
@@ -127,6 +126,10 @@ public class HomeFragment extends ModuleFragment {
         adapter = new ShopRecyclerAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         adapter.addAll(shopList);
+    }
+
+    @OnClick(R.id.btn_message) void openMessageList() {
+        UITools.intent(getActivity(),GoodsInfoActicity.class);
     }
 
     private  EditText.OnEditorActionListener onEditorActionListener = new TextView.OnEditorActionListener() {
@@ -235,7 +238,7 @@ public class HomeFragment extends ModuleFragment {
                     SimpleDraweeView imageView = new SimpleDraweeView(getActivity());
                     imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                     HomeAd.Ad ad = adList.get(position);
-                    imageView.setImageURI(Uri.parse(ServerConstant.API_URL + ServerConstant.API_URL_PATH + ad.getImgPath()));
+                    imageView.setImageURI(Uri.parse(ServerConstant.API_URL + ServerConstant.SCHEME + ad.getImgPath()));
                     RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
                     container.addView(imageView, params);
                     return imageView;

@@ -112,7 +112,6 @@ public class ServerApiClient {
         if(null != map && map.size() > 0) {
             LinkedHashMap<String,String> securityMap = SecurityDes3Util.decode(map);
             JSONObject jsonObject = new JSONObject(securityMap);
-            Log.e("post-requestJson:",jsonObject.toString());
             params.put("requestJson",jsonObject.toString());
         }
         post(context, ifCache, url, tag, params, callback);
@@ -218,7 +217,7 @@ public class ServerApiClient {
     public void getSellerDetailList(Context context, String tag, String shopId,String pageNum,String pageIndex,String type,String keyword,ServerApiClientCallback callback){
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_SHOPGOODS;
         LinkedHashMap<String,Object> params = new LinkedHashMap<>();
-        params.put("pageNum",pageNum);
+        params.put("pageSize",pageNum);
         params.put("pageIndex",pageIndex);
         params.put("shopId",shopId);
         params.put("type",type);
@@ -254,7 +253,7 @@ public class ServerApiClient {
     public void getGoodsInfo(Context context, String tag, String goodsId, ServerApiClientCallback callback){
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_GOODS;
         LinkedHashMap<String,Object> params = new LinkedHashMap<>();
-        params.put("id",goodsId);
+        params.put("goodsId",goodsId);
         postSecurity(context,params,url,tag,true,callback);
     }
 
@@ -268,7 +267,7 @@ public class ServerApiClient {
     public void getGoodsSkuList(Context context, String tag, String goodsId, ServerApiClientCallback callback) {
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_GOODS_SKULIST;
         LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-        params.put("id",goodsId);
+        params.put("goodsId",goodsId);
         postSecurity(context, params, url, tag, true, callback);
     }
 
@@ -278,7 +277,7 @@ public class ServerApiClient {
     public void getHomeShop(Context context,String tag,String pageNum,String displayType,ServerApiClientCallback callback) {
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_INDEXDISPLAYACTION;
         LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-        params.put("pageNum", pageNum);
+        params.put("pageSize", pageNum);
         params.put("pageIndex", "1");
         params.put("displayType", displayType);
         params.put("orgId", "0001");
@@ -378,7 +377,7 @@ public class ServerApiClient {
     public void getGoodsAttrbySku(Context context, String tag, String goodsId, String skuIds, ServerApiClientCallback callback) {
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_GOODS_ATTRBYSKU;
         LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-        params.put("id",goodsId);
+        params.put("goodsId",goodsId);
         params.put("skuIds",skuIds);
         postSecurity(context, params, url, tag, true, callback);
     }
@@ -389,7 +388,7 @@ public class ServerApiClient {
     public void getOrderList(Context context, String tag, String userId,String pageNum,String pageIndex, ServerApiClientCallback callback) {
         String url = ServerConstant.API_URL + ServerConstant.API_URL_PATH + APIURL_ORDERLIST;
         LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-        params.put("pageNum",pageNum);
+        params.put("pageSize",pageNum);
         params.put("pageIndex",pageIndex);
         params.put("userId",userId);
         postSecurity(context, params, url, tag, true, callback);

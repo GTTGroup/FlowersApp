@@ -9,6 +9,7 @@ public class ServerConstant {
 
     //服务端接口Schema
     public static final String API_URL = "http://120.25.69.190:10086";
+    public static final String SCHEME = "/flower";
     //服务端接口Path
     public static final String API_URL_PATH = "/flower/portal";
 
