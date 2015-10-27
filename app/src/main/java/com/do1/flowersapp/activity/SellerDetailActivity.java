@@ -126,8 +126,14 @@ public class SellerDetailActivity extends BaseActivity {
 
     //footer click
     @OnClick({R.id.text_category_foods, R.id.text_seller_intro, R.id.text_contact_seller})
-    public void onFooterClick(){
-        Toast.makeText(this, "哦哦哦哦哦哦哦", Toast.LENGTH_SHORT).show();
+    public void onFooterClick(View view){
+        if(view.getId() == R.id.text_category_foods){//鲜花分类
+            UITools.intent(this, SellerDetailAllActivity.class);
+        }else if(view.getId() == R.id.text_seller_intro){ //商家介绍
+            UITools.intent(this, ShopIntroActivity.class);
+        }else { //联系卖家
+            Toast.makeText(this,"联系卖家",Toast.LENGTH_SHORT).show();
+        }
     }
 
     @OnClick(R.id.img_message)

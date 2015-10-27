@@ -8,7 +8,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,10 +25,10 @@ import com.do1.flowersapp.activity.SellerDetailActivity;
 import com.do1.flowersapp.business.http.CommonResp;
 import com.do1.flowersapp.business.http.ServerApiClient;
 import com.do1.flowersapp.business.http.ServerApiClientCallback;
-import com.do1.flowersapp.constants.ServerConstant;
 import com.do1.flowersapp.business.model.HomeAd;
 import com.do1.flowersapp.business.model.HomeShop;
 import com.do1.flowersapp.common.RecyclerArrayAdapter;
+import com.do1.flowersapp.constants.ServerConstant;
 import com.do1.flowersapp.context.ModuleFragment;
 import com.do1.flowersapp.tools.UITools;
 import com.do1.flowersapp.widget.CirclePageIndicator;
@@ -129,7 +128,7 @@ public class HomeFragment extends ModuleFragment {
     }
 
     @OnClick(R.id.btn_message) void openMessageList() {
-        UITools.intent(getActivity(),GoodsInfoActicity.class);
+        UITools.intent(getActivity(),SellerDetailActivity.class);
     }
 
     private  EditText.OnEditorActionListener onEditorActionListener = new TextView.OnEditorActionListener() {

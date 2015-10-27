@@ -17,9 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.do1.flowersapp.R;
+import com.do1.flowersapp.activity.SellerDetailAllActivity;
 import com.do1.flowersapp.business.listener.HomeDetailClickListener;
 import com.do1.flowersapp.business.model.SellerDetailHome;
 import com.do1.flowersapp.tools.DeviceInfo;
+import com.do1.flowersapp.tools.UITools;
 import com.do1.flowersapp.widget.CirclePageIndicator;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -86,7 +88,9 @@ public class SellerDetailHomeFragment extends Fragment implements HomeDetailClic
 
     @Override
     public void onHotFlowerClick(TextView view) {
-        Toast.makeText(getActivity(),view.getText(),Toast.LENGTH_SHORT).show();
+        if(view.getText().equals("更多")){
+            UITools.intent(getActivity(), SellerDetailAllActivity.class);
+        }
     }
 
     @Override

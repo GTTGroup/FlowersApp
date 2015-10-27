@@ -99,6 +99,16 @@
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
                   android:theme="@style/Activitytheme"/>
+        <!-- 商家全部商品界面-->
+        <activity android:name=".activity.SellerDetailAllActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+                  android:theme="@style/Activitytheme"/>
+        <!-- 商家介绍界面-->
+        <activity android:name=".activity.ShopIntroActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+                  android:theme="@style/Activitytheme"/>
         <!--个人信息-->
         <activity android:name=".activity.UserPersonalActivity"
             android:screenOrientation="portrait"

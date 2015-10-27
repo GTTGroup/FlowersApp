@@ -29,7 +29,7 @@
                 android:id="@+id/edit_search_flower"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="搜索店铺种鲜花"
+                android:hint="搜索店铺和鲜花"
                 android:imeOptions="actionSearch"
                 android:paddingLeft="15dp"
                 android:paddingRight="40dp"
